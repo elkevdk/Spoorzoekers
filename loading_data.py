@@ -3,7 +3,6 @@ import pandas as pd
 class LoadData:
     def __init__(self, connection_file, station_file):
         self.connections = self.load_connections(connection_file)
-        self.startstation = self.identify_start_stations(self.connections)
         self.stations = self.load_stations(station_file)
 
     def load_connections(self, file):
@@ -21,16 +20,6 @@ class LoadData:
             connections[row[1]][row[0]] = int(float(row[2]))
 
         return connections
-
-    def identify_start_stations(self, connections):
-        startstation = []
-
-        # Identify start stations
-        for key, value in connections.items():
-            if len(value) == 1:
-                startstation.append(key)
-
-        return startstation
 
     def load_stations(self, file):
         df = pd.read_csv(file)
