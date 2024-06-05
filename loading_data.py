@@ -33,8 +33,15 @@ class LoadData:
 
     def load_stations(self, file):
         df = pd.read_csv(file)
+        stations = {}
 
-        # Create a dictionary of stations
-        stations = {row[0]: (float(row[2]), float(row[1])) for index, row in df.iterrows()}
+        # Iterate through the DataFrame rows
+        for index, row in df.iterrows():
+            station_id = row[0]
+            x = float(row[2])
+            y = float(row[1])
+
+            # Add the station to the dictionary
+            stations[station_id] = (x, y)
 
         return stations
