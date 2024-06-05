@@ -2,13 +2,12 @@ import pandas as pd
 
 class LoadData:
     def __init__(self, connection_file, station_file):
-        self.connections, self.connection_total, self.startstation = self.load_connections(connection_file)
+        self.connections = self.load_connections(connection_file)
+        self.startstation = self.identify_start_stations(self.connections)
         self.stations = self.load_stations(station_file)
 
     def load_connections(self, file):
         connections = {}
-        startstation = []
-
         df = pd.read_csv(file)
 
         # Iterate through the DataFrame rows
@@ -21,15 +20,17 @@ class LoadData:
                 connections[row[1]] = {}
             connections[row[1]][row[0]] = int(float(row[2]))
 
-        # Calculate the total number of connections
-        connection_total = len(df)
+        return connections
+
+    def identify_start_stations(self, connections):
+        startstation = []
 
         # Identify start stations
         for key, value in connections.items():
             if len(value) == 1:
                 startstation.append(key)
 
-        return connections, connection_total, startstation
+        return startstation
 
     def load_stations(self, file):
         df = pd.read_csv(file)
