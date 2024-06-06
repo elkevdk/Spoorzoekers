@@ -27,9 +27,3 @@ class Trajectories:
             current_station = next_station
 
         return self.connections
-
-# data = LoadData('files/ConnectiesHolland.csv', 'files/StationsHolland.csv')
-# all_connections = data.connections
-#
-# trajectory = Trajectories(all_connections, 120)
-# print(trajectory.add_trajectory())

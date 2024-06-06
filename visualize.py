@@ -53,8 +53,3 @@ class TrainNetwork:
         plt.ylabel("Y-coördinaten")
         plt.grid(True)
         plt.show()
-
-if __name__ == "__main__":
-    plotter = TrainNetwork('files/ConnectiesHolland.csv', 'files/StationsHolland.csv')
-    plotter.create_graph()
-    plotter.plot_graph()
