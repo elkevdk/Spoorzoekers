@@ -26,7 +26,7 @@ for station1, neighbors in connections.items():
 pos = nx.get_node_attributes(G, 'pos')
 
 # Plot the graph
-plt.figure(figsize=(12, 8))
+plt.figure(figsize=(8, 8))
 
 # Adjust node label positions
 label_pos = {node: (x, y + 0.02) for node, (x, y) in pos.items()}  # Adjust the y-coordinate as needed
