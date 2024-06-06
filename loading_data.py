@@ -1,6 +1,6 @@
 import pandas as pd
 
-class LoadData:
+class LoadData():
     def __init__(self, connection_file, station_file):
         self.connections = self.load_connections(connection_file)
         self.stations = self.load_stations(station_file)
