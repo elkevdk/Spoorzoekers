@@ -38,9 +38,3 @@ class Experiment():
     # def calculate_score(self):
     #     p =
     #     k =
-
-data = LoadData('files/ConnectiesHolland.csv', 'files/StationsHolland.csv')
-all_connections = data.connections
-my_experiment = Experiment(7, all_connections)
-# print(my_experiment.run())
-my_experiment.make_pairs()
