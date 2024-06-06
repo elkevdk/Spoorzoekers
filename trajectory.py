@@ -2,26 +2,6 @@ import random
 from loading_data import LoadData
 
 class Trajectories:
-        """
-        A class used to represent a fox.
-
-        ...
-
-        Parameters
-        ----------
-        pos_x : float
-            x-axis position of the creature.
-
-        Attributes
-        ----------
-        speed : float
-            speed of the creature.
-
-        Methods
-        -------
-        step()
-            simulate step of creature.
-        """
     def __init__(self, all_connections, max_time):
         self.connections = []
         self.max_time = max_time
