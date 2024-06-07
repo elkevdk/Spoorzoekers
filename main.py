@@ -10,13 +10,14 @@ def main():
 
     # run experiment and print results
     print(my_experiment.run())
+    print(my_experiment.calculate_score())
 
     # create the folder output if it doesn't exist
     if not os.path.exists('output'):
         os.makedirs('output')
 
     # save results to csv
-    my_experiment.to_csv('output/trajectories.csv')
+    my_experiment.to_csv('output/ouput.csv')
 
     # plot the trajectories
     plotter = TrainNetwork('files/ConnectiesHolland.csv', 'files/StationsHolland.csv')

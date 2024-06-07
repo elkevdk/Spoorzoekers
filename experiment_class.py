@@ -43,21 +43,28 @@ class Experiment():
 
         return self.all_trajectories
 
-    def to_csv(self, file_path):
+    def calculate_score(self):
+        # TODO: change p and t to reflect true values
+        p = 1
+
+        minutes = 0
+        for trajectory in self.all_trajectories.values():
+            for i in range(len(trajectory) - 1):
+                current_station = trajectory[i]
+                next_station = trajectory[i + 1]
+                minutes += self.all_connections[current_station][next_station]
+
+        t = self.max_trajectories
+        k = p * 10000 - (t * 100 + minutes)
+
+        return k
+
+    def to_csv(self, experiment_path):
         with open(experiment_path, "w", newline="") as output_file:
             csv_writer = csv.writer(output_file)
 
             # write header
-            csv_writer.writerow(["Train", "Stations"])
+            csv_writer.writerow(["train", "stations"])
 
             for train, stations in self.all_trajectories.items():
                 csv_writer.writerow((train, stations))
-
-    def calculate_score(self):
-        # TODO: implement
-        p =
-        k =
-        minutes = 0
-        for trajectory in self.all_trajectories():
-
-        return 1000
