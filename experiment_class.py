@@ -36,9 +36,8 @@ class Experiment():
 
     def run(self):
         for i in range(0, self.max_trajectories):
-            # create a trajectory instance with a maximum time fo 120
+            # create a trajectory instance with a maximum time of 120
             trajectory = Trajectories(self.all_connections, 120)
-            # add generated trajectory to dictionary
             self.all_trajectories[f"train_{i + 1}"] = trajectory.add_trajectory()
 
         return self.all_trajectories
