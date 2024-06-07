@@ -1,5 +1,6 @@
 from trajectory import Trajectories
 from loading_data import LoadData
+import csv
 
 class Experiment():
     """
