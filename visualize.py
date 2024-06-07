@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 from loading_data import LoadData
 
-class TrainNetwork:
+class TrainNetwork():
     """
     A class to represent train networks.
 
@@ -37,19 +37,19 @@ class TrainNetwork:
         Plots the graph representing the train network.
         This method visualizes the train network using matplotlib and networkx.
 
-        Parameters
-        ----------
-        node_size : int, optional
-            Size of the nodes in the plot (default is 50).
-        font_size : int, optional
-            Size of the font for node labels (default is 8).
-        label_offset : float, optional
-            Offset for the node labels' y-coordinate (default is 0.02).
+    Parameters
+    ----------
+    node_size : int, optional
+        Size of the nodes in the plot (default is 50).
+    font_size : int, optional
+        Size of the font for node labels (default is 8).
+    label_offset : float, optional
+        Offset for the node labels' y-coordinate (default is 0.02).
 
-        Raises
-        ------
-        ValueError
-            If the graph has not been created yet.
+    Raises
+    ------
+    ValueError
+        If the graph has not been created yet.
     """
     def __init__(self, connections_file, stations_file):
         # load data
