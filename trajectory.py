@@ -2,6 +2,27 @@ import random
 from loading_data import LoadData
 
 class Trajectories:
+        """
+        A class used to represent a trajectory.
+
+        ...
+
+        Parameters
+        ----------
+        all_connections : dict
+            Contains all possible connections between stations and the corresponding
+            duration.
+
+        Attributes
+        ----------
+        speed : float
+            speed of the creature.
+
+        Methods
+        -------
+        step()
+            simulate step of creature.
+        """
     def __init__(self, all_connections, max_time):
         self.connections = []
         self.max_time = max_time
