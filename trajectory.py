@@ -7,6 +7,17 @@ class Trajectories:
         self.max_time = max_time
         self.all_connections = all_connections
 
+    def make_pairs(self):
+        connection_pairs = set()
+        for start_station, connections in self.all_connections.items():
+            station_names = list(connections.keys())
+
+            for i in range(len(station_names)):
+                # use frozenset inside set
+                connection_pairs.add(frozenset((start_station, station_names[i])))
+
+        print(connection_pairs)
+
     def add_trajectory(self):
         self.time = 0
         all_connections_list = list(self.all_connections.keys())

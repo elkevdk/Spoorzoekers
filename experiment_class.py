@@ -7,17 +7,6 @@ class Experiment():
         self.all_trajectories = {}
         self.all_connections = all_connections
 
-    def make_pairs(self):
-        connection_pairs = set()
-        for start_station, connections in self.all_connections.items():
-            station_names = list(connections.keys())
-
-            for i in range(len(station_names)):
-                # use frozenset inside set
-                connection_pairs.add(frozenset((start_station, station_names[i])))
-
-        print(connection_pairs)
-
     def run(self):
         for i in range(0, self.max_trajectories):
             trajectory = Trajectories(self.all_connections, 120)
@@ -25,19 +14,25 @@ class Experiment():
 
         return self.all_trajectories
 
-    # def generate_output(self):
-    #     output = ""
-    #     for i, route in enumerate(self.routes, 1):
-    #         output += f"train_{i},{route}\n"
-    #
-    #     score = self.calculate_score()
-    #     output += f"score,{score}"
-    #
-    #     return output
-    #
-    # def calculate_score(self):
-    #     p =
-    #     k =
+    def to_csv(self, file_path):
+        with open(experiment_path, "w", newline="") as output_file:
+            csv_writer = csv.writer(output_file)
+
+            # write header
+            csv_writer.writerow(["Train", "Stations"])
+
+            for train, stations in self.all_trajectories.items():
+                csv_writer.writerow((train, stations))
+
+    def calculate_score(self):
+        # TODO: implement
+        p =
+        k =
+        minutes = 0
+        for trajectory in self.all_trajectories():
+
+        return 1000
+
 
 data = LoadData('files/ConnectiesHolland.csv', 'files/StationsHolland.csv')
 all_connections = data.connections
