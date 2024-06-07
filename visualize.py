@@ -4,6 +4,21 @@ import networkx as nx
 from loading_data import LoadData
 
 class TrainNetwork:
+    """
+    A class to represent train networks.
+
+    Parameters
+    ----------
+    connections_file : str
+        Path to the file containing the connections between stations.
+    stations_file : str
+        Path to the file containg station coordinates.
+
+    Attributes
+    ----------
+    data_loader : LoadData
+        An in
+    """
     def __init__(self, connections_file, stations_file):
         # Load data
         self.data_loader = LoadData(connections_file, stations_file)
