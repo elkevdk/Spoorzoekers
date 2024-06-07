@@ -1,8 +1,8 @@
 import random
 from loading_data import LoadData
 
-class Trajectories:
-        """
+class Trajectories():
+    """
         A class used to represent a trajectory.
 
         ...
@@ -30,7 +30,7 @@ class Trajectories:
         -------
         add_trajectory()
             Generates a trajectory within the allowed maximum time.
-        """
+    """
     def __init__(self, all_connections, max_time):
         self.max_time = max_time
         self.all_connections = all_connections
@@ -61,7 +61,11 @@ class Trajectories:
                 if len(possible_connections) > 1:
                     # use list comprehension to store all stations in possible all_connections
                     # that are not equal to the previous station
-                    possible_connections = [station for station in possible_connections if station != previous_station]
+                    new_possible_connections = []
+                    for station in possible_connections:
+                        if station != previous_station:
+                            new_possible_connections.append(station)
+                    possible_connections = new_possible_connections
 
             # if no connections are available, break the loop
             if not possible_connections:
@@ -80,7 +84,7 @@ class Trajectories:
             # update corresponding time
             self.time += travel_time
             # set previous station to the current station for the next iteration
-            previous_station = current_station 
+            previous_station = current_station
             current_station = next_station
 
         return self.connections
