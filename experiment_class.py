@@ -44,8 +44,20 @@ class Experiment():
         return self.all_trajectories
 
     def calculate_score(self):
-        # TODO: change p and t to reflect true values
-        p = 1
+        # TODO: change t to reflect true value
+        t = self.max_trajectories
+
+        unique_connections = set()
+        for trajectory in self.all_trajectories.values():
+            for i in range(len(trajectory) - 1):
+                connection = frozenset((trajectory[i], trajectory[i + 1]))
+                unique_connections.add(connection)
+
+        total_connections = 0
+        for connections in self.all_connections.values():
+            total_connections += len(connections)
+
+        p = len(unique_connections) / (total_connections / 2)
 
         minutes = 0
         for trajectory in self.all_trajectories.values():
@@ -54,7 +66,6 @@ class Experiment():
                 next_station = trajectory[i + 1]
                 minutes += self.all_connections[current_station][next_station]
 
-        t = self.max_trajectories
         k = p * 10000 - (t * 100 + minutes)
 
         return k
