@@ -68,7 +68,7 @@ class Experiment():
 
         k = p * 10000 - (t * 100 + minutes)
 
-        return k
+        self.all_trajectories["score"] = k
 
     def to_csv(self, experiment_path):
         with open(experiment_path, "w", newline="") as output_file:
@@ -78,4 +78,4 @@ class Experiment():
             csv_writer.writerow(["train", "stations"])
 
             for train, stations in self.all_trajectories.items():
-                csv_writer.writerow((train, stations))
+                    csv_writer.writerow((train, stations))

@@ -8,11 +8,11 @@ def main():
     all_connections = data.connections
     my_experiment = Experiment(7, all_connections)
 
-    # run experiment and print results
-    print(my_experiment.run())
-    print(my_experiment.calculate_score())
+    # run experiment and calculate score
+    my_experiment.run()
+    my_experiment.calculate_score()
 
-    # create the folder output if it doesn't exist
+    # create the output folder if it doesn't exist
     if not os.path.exists('output'):
         os.makedirs('output')
 
