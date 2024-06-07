@@ -33,20 +33,6 @@ class Experiment():
         self.all_trajectories = {}
         self.all_connections = all_connections
 
-    def make_pairs(self):
-        # initialize set to store pairs in
-        connection_pairs = set()
-        # loop over stations and connections and store each possible connection
-        # as a seperate pair in a set to ensure that the order of the stations
-        # doesn't matter and filter duplicates
-        for start_station, connections in self.all_connections.items():
-            station_names = list(connections.keys())
-
-            for i in range(len(station_names)):
-                # use frozenset inside set
-                connection_pairs.add(frozenset((start_station, station_names[i])))
-
-
     def run(self):
         for i in range(0, self.max_trajectories):
             # create a trajectory instance with a maximum time fo 120
@@ -55,3 +41,22 @@ class Experiment():
             self.all_trajectories[f"train_{i + 1}"] = trajectory.add_trajectory()
 
         return self.all_trajectories
+
+    def to_csv(self, file_path):
+        with open(experiment_path, "w", newline="") as output_file:
+            csv_writer = csv.writer(output_file)
+
+            # write header
+            csv_writer.writerow(["Train", "Stations"])
+
+            for train, stations in self.all_trajectories.items():
+                csv_writer.writerow((train, stations))
+
+    def calculate_score(self):
+        # TODO: implement
+        p =
+        k =
+        minutes = 0
+        for trajectory in self.all_trajectories():
+
+        return 1000

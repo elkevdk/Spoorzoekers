@@ -35,15 +35,17 @@ class Trajectories():
         self.all_connections = all_connections
 
     def make_pairs(self):
+        # initialize set to store pairs in
         connection_pairs = set()
+        # loop over stations and connections and store each possible connection
+        # as a seperate pair in a set to ensure that the order of the stations
+        # doesn't matter and filter duplicates
         for start_station, connections in self.all_connections.items():
             station_names = list(connections.keys())
 
             for i in range(len(station_names)):
                 # use frozenset inside set
                 connection_pairs.add(frozenset((start_station, station_names[i])))
-
-        print(connection_pairs)
 
     def add_trajectory(self):
         # initialize list of connections for the current trajectory
