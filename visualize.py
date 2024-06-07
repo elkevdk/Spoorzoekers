@@ -17,10 +17,42 @@ class TrainNetwork:
     Attributes
     ----------
     data_loader : LoadData
-        An in
+        An instance of the LoadData class to load connections and stations data.
+    connections : dict
+        Dictionary holding the connections between stations and corresponding travel times.
+    stations : dict
+        Dictionary containing stations and their coordinates.
+    graph : networkx.Graph
+        A graph that visualizes the train network.
+
+    Methods
+    -------
+    __init__(connections_file, stations_file)
+        Initializes the TrainNetwork class with the given connections and stations files.
+    create_graph()
+        Creates a graph to visualize the train network.
+        This method initializes a graph and adds nodes and edges based on the stations
+        and connections data.
+    plot_graph(node_size=50, font_size=8, label_offset=0.02)
+        Plots the graph representing the train network.
+        This method visualizes the train network using matplotlib and networkx.
+
+        Parameters
+        ----------
+        node_size : int, optional
+            Size of the nodes in the plot (default is 50).
+        font_size : int, optional
+            Size of the font for node labels (default is 8).
+        label_offset : float, optional
+            Offset for the node labels' y-coordinate (default is 0.02).
+
+        Raises
+        ------
+        ValueError
+            If the graph has not been created yet.
     """
     def __init__(self, connections_file, stations_file):
-        # Load data
+        # load data
         self.data_loader = LoadData(connections_file, stations_file)
         self.connections = self.data_loader.connections
         self.stations = self.data_loader.stations
