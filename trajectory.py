@@ -3,33 +3,32 @@ from loading_data import LoadData
 
 class Trajectories():
     """
-        A class used to represent a trajectory.
+    A class used to represent a trajectory.
 
-        ...
+    ...
+    Parameters
+    ----------
+    all_connections : dict
+        Contains all possible connections between stations and the corresponding
+        duration.
+    max_time : int
+        Maximum time a trajectory is allowed to take.
 
-        Parameters
-        ----------
-        all_connections : dict
-            Contains all possible connections between stations and the corresponding
-            duration.
-        max_time : int
-            Maximum time a trajectory is allowed to take.
+    Attributes
+    ----------
+    max_time : int
+        Maximum time for the trajectory.
+    all_connections : dict
+        All possible connections between stations and their durations.
+    connections : list
+        List of stations in the current trajectory
+    time : int
+        Elapsed time in current trajectory.
 
-        Attributes
-        ----------
-        max_time : int
-            Maximum time for the trajectory.
-        all_connections : dict
-            All possible connections between stations and their durations.
-        connections : list
-            List of stations in the current trajectory
-        time : int
-            Elapsed time in current trajectory.
-
-        Methods
-        -------
-        add_trajectory()
-            Generates a trajectory within the allowed maximum time.
+    Methods
+    -------
+    add_trajectory()
+        Generates a trajectory within the allowed maximum time.
     """
     def __init__(self, all_connections, max_time):
         self.max_time = max_time
