@@ -107,8 +107,6 @@ class Random():
             self.trajectory_count += 1
             self.all_trajectories[f"train_{self.trajectory_count}"] = self.connections
 
-        print(f"P: {p}")
-
         return self.all_trajectories
 
     def calculate_score(self):
