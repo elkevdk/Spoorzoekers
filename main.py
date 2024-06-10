@@ -1,15 +1,15 @@
 from loading_data import LoadData
 from visualize import TrainNetwork
-from experiment_class import Experiment
+from base import Random
 import os
 
 def main():
     data = LoadData('files/ConnectiesHolland.csv', 'files/StationsHolland.csv')
     all_connections = data.connections
-    my_experiment = Experiment(7, all_connections)
+    my_experiment = Random(7, all_connections, 120)
 
     # run experiment and calculate score
-    my_experiment.run()
+    my_experiment.add_trajectory()
     my_experiment.calculate_score()
 
     # create the output folder if it doesn't exist
