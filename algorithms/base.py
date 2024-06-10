@@ -59,8 +59,7 @@ class Random():
             p = 0
 
             # continue filling trajectory until max time is exceeded
-            if self.time <= self.max_time:
-
+            while self.time <= self.max_time:
                 unique_connections = set()
                 for trajectory in self.all_trajectories.values():
                     for i in range(len(trajectory) - 1):
@@ -69,11 +68,11 @@ class Random():
 
                 p = len(unique_connections) / (total_connections / 2)
 
-                if p >= 1:
-                    return self.all_trajectories
-
                 # retrieve list of possible connections from the current station
                 possible_connections = list(self.all_connections[current_station].keys())
+
+                if p >= 1:
+                    return self.all_trajectories
 
                 # try to exclude the previous station from the possible connections
                 if previous_station:
