@@ -36,7 +36,9 @@ class Random():
         self.max_time = max_time
 
     def add_trajectory(self):
-        for i in range(0, self.max_trajectories):
+        self.trajectory_count = 0
+        while self.trajectory_count < self.max_trajectories:
+
             # initialize list of connections for the current trajectory
             self.connections = []
             # initialize elapsed time
@@ -50,9 +52,23 @@ class Random():
 
             current_station = start_station
             previous_station = None
+            p = 0
 
             # continue filling trajectory until max time is exceeded
-            while self.time <= self.max_time:
+            while self.time <= self.max_time and p < 1:
+
+                unique_connections = set()
+                for trajectory in self.all_trajectories.values():
+                    for i in range(len(trajectory) - 1):
+                        connection = frozenset((trajectory[i], trajectory[i + 1]))
+                        unique_connections.add(connection)
+
+                total_connections = 0
+                for connections in self.all_connections.values():
+                    total_connections += len(connections)
+
+                p = len(unique_connections) / (total_connections / 2)
+
                 # retrieve list of possible connections from the current station
                 possible_connections = list(self.all_connections[current_station].keys())
 
@@ -88,13 +104,15 @@ class Random():
                 previous_station = current_station
                 current_station = next_station
 
-            self.all_trajectories[f"train_{i + 1}"] = self.connections
+            self.trajectory_count += 1
+            self.all_trajectories[f"train_{self.trajectory_count}"] = self.connections
+
+        print(f"P: {p}")
 
         return self.all_trajectories
 
     def calculate_score(self):
-        # TODO: change t to reflect true value
-        t = self.max_trajectories
+        t = self.trajectory_count
 
         unique_connections = set()
         for trajectory in self.all_trajectories.values():
