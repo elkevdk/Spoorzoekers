@@ -1,5 +1,4 @@
 import random
-from loading_data import LoadData
 
 class ():
     """

@@ -1,4 +1,3 @@
-from loading_data import LoadData
 import csv
 import random
 
@@ -12,6 +11,8 @@ class Random():
         Maximum number of trajectories to generate.
     all_connections : dict
         Dictionary containing all possible connections between stations and their durations.
+    max_time : int
+        Maximum time a trajectory is allowed to take.
 
     Attributes
     ----------
@@ -24,10 +25,8 @@ class Random():
 
     Methods
     -------
-    make_pairs()
-        Creates unique pairs of connected stations.
-    run()
-        Generates trajectories and stores them in all_trajectories.
+    add_trajectory()
+        Generates a trajectory within the allowed maximum time.
     """
     def __init__(self, max_trajectories, all_connections, max_time):
         self.max_trajectories = max_trajectories
@@ -37,6 +36,11 @@ class Random():
 
     def add_trajectory(self):
         self.trajectory_count = 0
+
+        total_connections = 0
+        for connections in self.all_connections.values():
+            total_connections += len(connections)
+
         while self.trajectory_count < self.max_trajectories:
 
             # initialize list of connections for the current trajectory
@@ -55,7 +59,7 @@ class Random():
             p = 0
 
             # continue filling trajectory until max time is exceeded
-            while self.time <= self.max_time and p < 1:
+            if self.time <= self.max_time:
 
                 unique_connections = set()
                 for trajectory in self.all_trajectories.values():
@@ -63,11 +67,10 @@ class Random():
                         connection = frozenset((trajectory[i], trajectory[i + 1]))
                         unique_connections.add(connection)
 
-                total_connections = 0
-                for connections in self.all_connections.values():
-                    total_connections += len(connections)
-
                 p = len(unique_connections) / (total_connections / 2)
+
+                if p >= 1:
+                    return self.all_trajectories
 
                 # retrieve list of possible connections from the current station
                 possible_connections = list(self.all_connections[current_station].keys())

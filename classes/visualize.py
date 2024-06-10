@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import networkx as nx
-from loading_data import LoadData
 
 class TrainNetwork():
     """
