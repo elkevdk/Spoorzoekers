@@ -1,8 +1,8 @@
 import random
 
-class Random_R():
+class Random_R:
     """
-    Class that runs an experiment with a set of trajectories.
+    Class that runs an experiment with a set of trajectories without filtering the previous station.
 
     Parameters
     ----------
@@ -34,59 +34,70 @@ class Random_R():
         self.max_time = max_time
         self.trajectory_count = 0
 
-    def add_trajectory(self):
+    def calculate_total_connections(self):
         total_connections = 0
         for connections in self.all_connections.values():
             total_connections += len(connections)
+        return total_connections
+
+    def initialize_trajectory(self):
+        self.connections = []
+        self.time = 0
+        start_station = self.select_random_station()
+        self.connections.append(start_station)
+        return start_station
+
+    def select_random_station(self):
+        all_connections_list = list(self.all_connections.keys())
+        return random.choice(all_connections_list)
+
+    def calculate_p(self, total_connections):
+        unique_connections = set()
+        for trajectory in self.all_trajectories.values():
+            for i in range(len(trajectory) - 1):
+                connection = frozenset((trajectory[i], trajectory[i + 1]))
+                unique_connections.add(connection)
+        p = len(unique_connections) / (total_connections / 2)
+        return p
+
+    def select_next_station(self, possible_connections):
+        return random.choice(possible_connections)
+
+    def update_trajectory(self, next_station, travel_time, current_station):
+        self.connections.append(next_station)
+        self.time += travel_time
+        return current_station, next_station
+
+    def filter_connections(self, possible_connections, previous_station):
+        # Base class does not filter out the previous station
+        return possible_connections
+
+    def add_trajectory(self):
+        total_connections = self.calculate_total_connections()
 
         while self.trajectory_count < self.max_trajectories:
-
-            # initialize list of connections for the current trajectory
-            self.connections = []
-            # initialize elapsed time
-            self.time = 0
-            # turn the outer dictionary into a list
-            all_connections_list = list(self.all_connections.keys())
-            # select a random starting station
-            start_station = random.choice(all_connections_list)
-            # add starting station to trajectory
-            self.connections.append(start_station)
-
-            current_station = start_station
+            current_station = self.initialize_trajectory()
             previous_station = None
-            p = 0
 
-            # continue filling trajectory until max time is exceeded
             while self.time <= self.max_time:
-                unique_connections = set()
-                for trajectory in self.all_trajectories.values():
-                    for i in range(len(trajectory) - 1):
-                        connection = frozenset((trajectory[i], trajectory[i + 1]))
-                        unique_connections.add(connection)
-
-                p = len(unique_connections) / (total_connections / 2)
-
-                # retrieve list of possible connections from the current station
-                possible_connections = list(self.all_connections[current_station].keys())
+                p = self.calculate_p(total_connections)
 
                 if p >= 1:
                     return self.all_trajectories
 
-                # select next station randomly
-                next_station = random.choice(possible_connections)
+                possible_connections = list(self.all_connections[current_station].keys())
+                possible_connections = self.filter_connections(possible_connections, previous_station)
+
+                if not possible_connections:
+                    break
+
+                next_station = self.select_next_station(possible_connections)
                 travel_time = self.all_connections[current_station][next_station]
 
-                # break the loop if adding the next station exceeds the max time
                 if self.time + travel_time > self.max_time:
                     break
 
-                # add next station to the current trajectory
-                self.connections.append(next_station)
-                # update corresponding time
-                self.time += travel_time
-                # set previous station to the current station for the next iteration
-                previous_station = current_station
-                current_station = next_station
+                previous_station, current_station = self.update_trajectory(next_station, travel_time, current_station)
 
             self.trajectory_count += 1
             self.all_trajectories[f"train_{self.trajectory_count}"] = self.connections
