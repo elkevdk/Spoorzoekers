@@ -32,6 +32,8 @@ def main():
     random_r_results.to_csv('output/ouput_r.csv')
     random_nr_results.to_csv('output/ouput_nr.csv')
 
+    for i in range(100)
+
     # plot the trajectories
     plotter = TrainNetwork('data/ConnectiesHolland.csv', 'data/StationsHolland.csv')
     plotter.create_graph()
