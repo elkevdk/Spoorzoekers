@@ -1,5 +1,5 @@
 from classes.loading_data import LoadData
-from classes.visualize import TrainNetwork
+from output.visualize import TrainNetwork
 from algorithms.base import Base
 from algorithms.random_R import Random_R
 from algorithms.random_NR import Random_NR
