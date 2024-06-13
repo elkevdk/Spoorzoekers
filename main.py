@@ -5,6 +5,7 @@ from algorithms.random_R import Random_R
 from algorithms.random_NR import Random_NR
 import os
 
+
 def main():
     data = LoadData('data/ConnectiesHolland.csv', 'data/StationsHolland.csv')
     all_connections = data.connections

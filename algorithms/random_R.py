@@ -48,8 +48,7 @@ class Random_R:
         return start_station
 
     def select_random_station(self):
-        all_connections_list = list(self.all_connections.keys())
-        return random.choice(all_connections_list)
+        return random.choice(list(self.all_connections.keys()))
 
     def calculate_p(self, total_connections):
         unique_connections = set()
