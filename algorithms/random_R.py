@@ -103,3 +103,12 @@ class Random_R:
             self.all_trajectories[f"train_{self.trajectory_count}"] = self.connections
 
         return self.all_trajectories
+
+    def calculate_p_for_trajectory(self, trajectory):
+        unique_connections = set()
+        for i in range(len(trajectory) - 1):
+            connection = frozenset((trajectory[i], trajectory[i + 1]))
+            unique_connections.add(connection)
+        total_connections = self.calculate_total_connections()
+        p = len(unique_connections) / (total_connections / 2)
+        return p

@@ -3,6 +3,7 @@ from output.visualize import TrainNetwork
 from algorithms.base import Base
 from algorithms.random_R import Random_R
 from algorithms.random_NR import Random_NR
+from algorithms.best_score import Score_Optimizer
 from classes.score_distribution import ScoreDistribution
 import os
 
@@ -18,12 +19,19 @@ def main():
     random_nr = Random_NR(7, all_connections, 120)
     random_nr_results = Base(random_nr.all_trajectories, random_nr.trajectory_count, all_connections)
 
+    # score Score_Optimizer
+    score_optimizer = Score_Optimizer(7, all_connections, 120)
+    score_optimizer_results = Base(score_optimizer.all_trajectories, score_optimizer.trajectory_count, all_connections)
+
     # run experiment and calculate score
     random_r.add_trajectory()
     random_r_results.calculate_score()
 
     random_nr.add_trajectory()
     random_nr_results.calculate_score()
+
+    score_optimizer.add_trajectory()
+    score_optimizer_results.calculate_score()
 
     # create the output folder if it doesn't exist
     if not os.path.exists('output'):
