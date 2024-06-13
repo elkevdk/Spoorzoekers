@@ -8,6 +8,7 @@ class Random_NR(Random_R):
     Inherits from Random_NR and adds the filter_connections method to exclude the previous station from possible connections.
     """
     def filter_connections(self, possible_connections, previous_station):
+    # filter out the previous station
         if previous_station:
             if len(possible_connections) > 1:
                 possible_connections = [station for station in possible_connections if station != previous_station]

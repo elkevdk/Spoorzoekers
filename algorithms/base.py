@@ -58,6 +58,8 @@ class Base():
 
         self.all_trajectories["score"] = k
 
+        return k
+
     def to_csv(self, experiment_path):
         with open(experiment_path, "w", newline="") as output_file:
             csv_writer = csv.writer(output_file)
