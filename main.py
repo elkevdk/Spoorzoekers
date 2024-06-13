@@ -40,10 +40,12 @@ def main():
     # save results to csv
     random_r_results.to_csv('output/output_r.csv')
     random_nr_results.to_csv('output/output_nr.csv')
+    score_optimizer_results.to_csv('output/output_so.csv')
 
     # calculate and plot score distribution
     ScoreDistribution(20000, Random_R, all_connections, 'output/score_distribution_r.png', 'Score Distribution Random Return', 7, all_connections, 120)
     ScoreDistribution(20000, Random_NR, all_connections, 'output/score_distribution_nr.png', 'Score Distribution Random No Return', 7, all_connections, 120)
+    ScoreDistribution(200, Score_Optimizer, all_connections, 'output/score_distribution_so.png', 'Score Distribution Optimizer', 7, all_connections, 120)
 
     # plot the trajectories
     plotter = TrainNetwork('data/ConnectiesHolland.csv', 'data/StationsHolland.csv')
