@@ -1,4 +1,5 @@
 from algorithms.random_R import Random_R
+from algorithms.base import Base
 import random
 
 class Random_NR(Random_R):
