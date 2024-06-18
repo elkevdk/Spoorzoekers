@@ -5,11 +5,13 @@ from algorithms.random_R import Random_R
 from algorithms.random_NR import Random_NR
 from algorithms.best_score import Score_Optimizer
 from classes.score_distribution import ScoreDistribution
+from algorithms.greedy import Greedy
 import os
 
 def main():
     data = LoadData('data/ConnectiesHolland.csv', 'data/StationsHolland.csv')
     all_connections = data.connections
+    all_stations = data.stations
 
     # random return
     random_r = Random_R(7, all_connections, 120)
@@ -30,6 +32,14 @@ def main():
     random_nr.add_trajectory()
     random_nr_results.calculate_score()
 
+    # Greedy algorithm
+    greedy = Greedy(7, all_connections, 120)
+    greedy.add_trajectory()
+    greedy_results = Base(greedy.all_trajectories, greedy.trajectory_count, all_connections)
+
+    # Calculate the score
+    score = greedy_results.calculate_score()
+
     score_optimizer.add_trajectory()
     score_optimizer_results.calculate_score()
 
@@ -40,10 +50,12 @@ def main():
     # save results to csv
     random_r_results.to_csv('output/output_r.csv')
     random_nr_results.to_csv('output/output_nr.csv')
+    greedy_results.to_csv('output/output_greedy.csv')
 
     # calculate and plot score distribution
     ScoreDistribution(20000, Random_R, all_connections, 'output/score_distribution_r.png', 'Score Distribution Random Return', 7, all_connections, 120)
     ScoreDistribution(20000, Random_NR, all_connections, 'output/score_distribution_nr.png', 'Score Distribution Random No Return', 7, all_connections, 120)
+    ScoreDistribution(20, Greedy, all_connections, 'output/score_distribution_greedy.png', 'Score Distribution Greedy', 7, all_connections, 120)
 
     # plot the trajectories
     plotter = TrainNetwork('data/ConnectiesHolland.csv', 'data/StationsHolland.csv')
