@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from algorithms.base import Base
 from algorithms.random_R import Random_R
 from algorithms.random_NR import Random_NR
+from algorithms.greedy import Greedy
 
 class ScoreDistribution():
     def __init__(self, iterations, algorithm_class, connections, file_name, title, max_trajectories, all_connections, max_time):
