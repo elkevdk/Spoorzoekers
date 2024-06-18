@@ -91,9 +91,17 @@ def main():
     score_optimizer.add_trajectory()
     score_optimizer_results.calculate_score()
 
+    # Greedy algorithm
+    greedy = Greedy(7, all_connections, 120)
+    greedy.add_trajectory()
+    greedy_results = Base(greedy.all_trajectories, greedy.trajectory_count, all_connections)
+    score = greedy_results.calculate_score()
+
     # save results to csv
     random_r_results.to_csv('output/NL_output_r.csv')
     random_nr_results.to_csv('output/NL_output_nr.csv')
+    score_optimizer_results.to_csv('output/output_so.csv')
+    greedy_results.to_csv('output/output_greedy.csv')
 
     # calculate and plot score distribution
     ScoreDistribution(20000, Random_R, all_connections, 'output/NL_score_distribution_r.png', 'Score Distribution Random Return, Netherlands', 20, all_connections, 180)
