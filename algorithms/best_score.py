@@ -10,9 +10,7 @@ class Score_Optimizer(Random_R):
             current_trajectory = self.connections[:]
             current_trajectory.append(connection)
             score = self.calculate_p_for_trajectory(current_trajectory)
-            print(score)
             possible_connections_scores.append(score)
 
         best_connection_index = possible_connections_scores.index(max(possible_connections_scores))
-        print(max(possible_connections))
         return possible_connections[best_connection_index]
