@@ -26,12 +26,6 @@ class Greedy(Random_R):
         """
         Create a trajectory starting from the given city using a greedy approach,
         ensuring each connection is used only once across all trajectories.
-
-        Parameters:
-        - city: Starting station for the trajectory.
-        - count: Index or identifier of the trajectory being generated.
-        - max_time: Maximum time allowed for the trajectory.
-        - all_connections: Dictionary of all possible connections between stations and their durations.
         """
         endtime = 0
         time_elapsed = 0
@@ -93,12 +87,6 @@ class Greedy(Random_R):
     def calculate_p_for_trajectory(self, trajectory):
         """
         Calculate the performance measure P for a given trajectory.
-
-        Parameters:
-        - trajectory: List representing a single trajectory.
-
-        Returns:
-        - p: Performance measure P for the trajectory.
         """
         unique_connections = set()
         for i in range(len(trajectory) - 1):
@@ -111,13 +99,6 @@ class Greedy(Random_R):
     def filter_connections(self, possible_connections, previous_station):
         """
         Filter connections to exclude the previous station.
-
-        Parameters:
-        - possible_connections: List of possible next stations.
-        - previous_station: Station visited before the current station.
-
-        Returns:
-        - filtered_connections: List of filtered next stations.
         """
         if previous_station in possible_connections:
             possible_connections.remove(previous_station)
