@@ -1,9 +1,9 @@
 train,stations
-train_1,"['Deventer', 'Apeldoorn', 'Zutphen', 'Dieren', 'Arnhem Centraal', 'Ede-Wageningen', 'Utrecht Centraal', 'Amersfoort']"
-train_2,"['Enschede', 'Hengelo', 'Almelo', 'Deventer', 'Zwolle', 'Steenwijk', 'Heerenveen', 'Leeuwarden']"
-train_3,"['Vlissingen', 'Roosendaal', 'Etten-Leur', 'Breda', 'Tilburg', 's-Hertogenbosch', 'Oss']"
-train_4,"['s-Hertogenbosch', 'Eindhoven', 'Helmond', 'Venlo']"
-train_5,"['Assen', 'Groningen']"
-train_6,"['Den Haag HS', 'Delft', 'Schiedam Centrum', 'Rotterdam Centraal', 'Rotterdam Alexander', 'Rotterdam Blaak', 'Dordrecht']"
-train_7,"['Groningen', 'Assen']"
-score,2891.7865168539324
+train_1,"['Heemstede-Aerdenhout', 'Haarlem', 'Amsterdam Sloterdijk', 'Amsterdam Centraal', 'Amsterdam Amstel', 'Amsterdam Zuid', 'Schiphol Airport', 'Leiden Centraal', 'Den Haag Centraal', 'Delft', 'Schiedam Centrum', 'Rotterdam Centraal', 'Rotterdam Alexander', 'Gouda']"
+train_2,"['Rotterdam Alexander', 'Rotterdam Centraal']"
+train_3,"['Beverwijk', 'Castricum', 'Alkmaar', 'Hoorn', 'Zaandam', 'Beverwijk']"
+train_4,"['Amsterdam Amstel', 'Amsterdam Centraal']"
+train_5,"['Amsterdam Sloterdijk', 'Amsterdam Centraal']"
+train_6,"['Amsterdam Zuid', 'Schiphol Airport']"
+train_7,"['Rotterdam Alexander', 'Rotterdam Centraal']"
+score,6178.571428571429
