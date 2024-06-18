@@ -11,4 +11,7 @@ In this README we give a little explanation about this case: RailNL.
 # Method
 
 # Authors
+- Elke van der Kooij
+- Mila Vogels
+- Marinne van Willigenburg
 
