@@ -1,9 +1,9 @@
 train,stations
-train_1,"['Schiedam Centrum', 'Rotterdam Centraal', 'Rotterdam Alexander', 'Gouda', 'Den Haag Centraal', 'Leiden Centraal', 'Heemstede-Aerdenhout', 'Haarlem', 'Amsterdam Sloterdijk', 'Amsterdam Centraal', 'Amsterdam Amstel', 'Amsterdam Zuid', 'Schiphol Airport']"
-train_2,"['Heemstede-Aerdenhout', 'Haarlem']"
-train_3,"['Haarlem', 'Beverwijk', 'Castricum', 'Alkmaar', 'Hoorn', 'Zaandam']"
-train_4,"['Beverwijk', 'Castricum']"
-train_5,"['Beverwijk', 'Castricum']"
-train_6,"['Amsterdam Amstel', 'Amsterdam Centraal']"
-train_7,"['Leiden Centraal', 'Alphen a/d Rijn']"
-score,6173.571428571429
+train_1,"['Dordrecht', 'Rotterdam Centraal', 'Schiedam Centrum', 'Delft', 'Den Haag Centraal', 'Leiden Centraal', 'Heemstede-Aerdenhout', 'Haarlem', 'Amsterdam Sloterdijk', 'Amsterdam Centraal', 'Amsterdam Amstel', 'Amsterdam Zuid', 'Schiphol Airport']"
+train_2,"['Haarlem', 'Beverwijk', 'Castricum', 'Alkmaar', 'Hoorn', 'Zaandam']"
+train_3,"['Gouda', 'Rotterdam Alexander']"
+train_4,"['Amsterdam Centraal', 'Amsterdam Sloterdijk']"
+train_5,"['Schiedam Centrum', 'Rotterdam Centraal']"
+train_6,"['Haarlem', 'Heemstede-Aerdenhout']"
+train_7,"['Delft', 'Schiedam Centrum']"
+score,6192.571428571429
