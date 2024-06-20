@@ -13,14 +13,9 @@ class Greedy(Random_R):
     def __init__(self, max_trajectories, all_connections, max_time):
         """
         Initialize the Greedy class.
-
-        Parameters:
-        - max_trajectories: Maximum number of trajectories to generate.
-        - all_connections: Dictionary containing all possible connections between stations and their durations.
-        - max_time: Maximum time a trajectory is allowed to take.
         """
         super().__init__(max_trajectories, all_connections, max_time)
-        self.used_connections = set()  # Set to track used connections globally
+        self.used_connections = set()
 
     def make_trajectory(self, city, count, max_time, all_connections):
         """
@@ -35,8 +30,10 @@ class Greedy(Random_R):
             best_stop_time = float('inf')
             best_stop_city = ""
 
-            # Filter connections to exclude globally used ones
-            possible_connections = [(conn, conn_time) for conn, conn_time in all_connections[city].items() if conn not in self.used_connections]
+            possible_connections = []
+            for conn, conn_time in all_connections[city].items():
+                if conn not in self.used_connections:
+                    possible_connections.append((conn, conn_time))
 
             # Search for the nearest station in the filtered connections
             for connection, connection_time in possible_connections:
