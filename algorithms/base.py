@@ -60,6 +60,36 @@ class Base():
 
         return k
 
+    def calculate_intermediate_score(self):
+        t = self.trajectory_count
+
+        unique_connections = set()
+        for trajectory in self.all_trajectories.values():
+            trajectory_loop = trajectory[:-1]
+            for i in range(len(trajectory_loop) - 1):
+                connection = frozenset((trajectory_loop[i], trajectory_loop[i + 1]))
+                unique_connections.add(connection)
+
+        total_connections = 0
+        for connections in self.all_connections.values():
+            total_connections += len(connections)
+
+        p = len(unique_connections) / (total_connections / 2)
+
+        minutes = 0
+        for trajectory in self.all_trajectories.values():
+            for i in range(len(trajectory_loop) - 1):
+                current_station = trajectory_loop[i]
+                next_station = trajectory_loop[i + 1]
+                minutes += self.all_connections[current_station][next_station]
+
+        k = p * 10000 - (t * 100 + minutes)
+
+        self.all_trajectories["score"] = k
+
+        return k
+
+
     def to_csv(self, experiment_path):
         with open(experiment_path, "w", newline="") as output_file:
             csv_writer = csv.writer(output_file)

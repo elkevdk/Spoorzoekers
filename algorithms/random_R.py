@@ -103,24 +103,3 @@ class Random_R:
             self.all_trajectories[f"train_{self.trajectory_count}"] = self.connections
 
         return self.all_trajectories
-
-    def calculate_score_for_trajectory(self, trajectory):
-
-        unique_connections = set()
-        for i in range(len(trajectory) - 1):
-            connection = frozenset((trajectory[i], trajectory[i + 1]))
-            unique_connections.add(connection)
-        total_connections = self.calculate_total_connections()
-        p = len(unique_connections) / (total_connections / 2)
-
-        minutes = 0
-        for trajectory in self.all_trajectories.values():
-            for i in range(len(trajectory) - 1):
-                current_station = trajectory[i]
-                next_station = trajectory[i + 1]
-                minutes += self.all_connections[current_station][next_station]
-
-
-        k = p * 10000 - (self.trajectory_count * 100 + minutes)
-
-        return k
