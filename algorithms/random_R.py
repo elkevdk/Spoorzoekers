@@ -69,7 +69,7 @@ class Random_R:
         return current_station, next_station
 
     def filter_connections(self, possible_connections, previous_station):
-        # Base class does not filter out the previous station
+        # base class does not filter out the previous station
         return possible_connections
 
     def add_trajectory(self):
@@ -103,3 +103,6 @@ class Random_R:
             self.all_trajectories[f"train_{self.trajectory_count}"] = self.connections
 
         return self.all_trajectories
+
+    def remove_trajectory(self):
+        self.all_trajectories.remove(trajectory)
