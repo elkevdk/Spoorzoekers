@@ -78,8 +78,8 @@ def main():
     random_nr_results = Base(random_nr.all_trajectories, random_nr.trajectory_count, all_connections)
 
     # # score Score_Optimizer
-    # score_optimizer = Score_Optimizer(20, all_connections, 180)
-    # score_optimizer_results = Base(score_optimizer.all_trajectories, score_optimizer.trajectory_count, all_connections)
+    score_optimizer = Score_Optimizer(20, all_connections, 180)
+    score_optimizer_results = Base(score_optimizer.all_trajectories, score_optimizer.trajectory_count, all_connections)
 
     # # Greedy algorithm
     # greedy = Greedy(20, all_connections, 180)
@@ -87,18 +87,18 @@ def main():
     # greedy_results = Base(greedy.all_trajectories, greedy.trajectory_count, all_connections)
 
     # run experiment and calculate score
-    random_r.add_trajectory()
-    random_r_results.calculate_score()
-
-    random_nr.add_trajectory()
-    random_nr_results.calculate_score()
-
-    # score_optimizer.add_trajectory()
-    # score_optimizer_results.calculate_score()
-
-    # Calculate the score
-    greedy.add_trajectory()
-    greedy_results.calculate_score()
+    # random_r.add_trajectory()
+    # random_r_results.calculate_score()
+    #
+    # random_nr.add_trajectory()
+    # random_nr_results.calculate_score()
+    #
+    score_optimizer.add_trajectory()
+    score_optimizer_results.calculate_intermediate_score()
+    #
+    # # Calculate the score
+    # greedy.add_trajectory()
+    # greedy_results.calculate_score()
 
     # save results to csv
     # random_r_results.to_csv('output/NL_output_r.csv')
@@ -109,7 +109,7 @@ def main():
     # calculate and plot score distribution
     # ScoreDistribution(20000, Random_R, all_connections, 'output/NL_score_distribution_r.png', 'Score Distribution Random Return, Netherlands', 20, all_connections, 180)
     # ScoreDistribution(20000, Random_NR, all_connections, 'output/NL_score_distribution_nr.png', 'Score Distribution Random No Return, Netherlands', 20, all_connections, 180)
-    ScoreDistribution(1000, Score_Optimizer, all_connections, 'output/NL_score_distribution_so.png', 'Score Distribution Optimizer, Netherlands', 20, all_connections, 180)
+    ScoreDistribution(100, Score_Optimizer, all_connections, 'output/NL_score_distribution_so.png', 'Score Distribution Optimizer, Netherlands', 20, all_connections, 180)
     # ScoreDistribution(20000, Greedy, all_connections, 'output/NL_score_distribution_greedy.png', 'Score Distribution Greedy, Netherlands', 20, all_connections, 180)
 
     # plot the trajectories
