@@ -107,10 +107,10 @@ def main():
     greedy_results.to_csv('output/NL_output_greedy.csv')
 
     # calculate and plot score distribution
-    # ScoreDistribution(20000, Random_R, all_connections, 'output/NL_score_distribution_r.png', 'Score Distribution Random Return, Netherlands', 20, all_connections, 180)
-    # ScoreDistribution(20000, Random_NR, all_connections, 'output/NL_score_distribution_nr.png', 'Score Distribution Random No Return, Netherlands', 20, all_connections, 180)
-    # ScoreDistribution(20000, Score_Optimizer, all_connections, 'output/NL_score_distribution_so.png', 'Score Distribution Optimizer, Netherlands', 20, all_connections, 180)
-    # ScoreDistribution(20000, Greedy, all_connections, 'output/NL_score_distribution_greedy.png', 'Score Distribution Greedy, Netherlands', 20, all_connections, 180)
+    ScoreDistribution(20000, Random_R, all_connections, 'output/NL_score_distribution_r.png', 'Score Distribution Random Return, Netherlands', 20, all_connections, 180)
+    ScoreDistribution(20000, Random_NR, all_connections, 'output/NL_score_distribution_nr.png', 'Score Distribution Random No Return, Netherlands', 20, all_connections, 180)
+    ScoreDistribution(20000, Score_Optimizer, all_connections, 'output/NL_score_distribution_so.png', 'Score Distribution Optimizer, Netherlands', 20, all_connections, 180)
+    ScoreDistribution(20000, Greedy, all_connections, 'output/NL_score_distribution_greedy.png', 'Score Distribution Greedy, Netherlands', 20, all_connections, 180)
 
     # plot all trajectories
     plotter = TrainNetwork('data/ConnectiesNationaal.csv', 'data/StationsNationaal.csv')
