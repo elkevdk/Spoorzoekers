@@ -75,36 +75,6 @@ def main():
 
     # random return algorithm
     random_r = Random_R(20, all_connections, 180)
-<<<<<<< HEAD
-    random_r_results = Base(random_r.all_trajectories, random_r.trajectory_count, all_connections)
-
-    # random no return
-    random_nr = Random_NR(20, all_connections, 180)
-    random_nr_results = Base(random_nr.all_trajectories, random_nr.trajectory_count, all_connections)
-
-    # # score Score_Optimizer
-    score_optimizer = Score_Optimizer(20, all_connections, 180)
-    score_optimizer_results = Base(score_optimizer.all_trajectories, score_optimizer.trajectory_count, all_connections)
-
-    # # Greedy algorithm
-    # greedy = Greedy(20, all_connections, 180)
-    # greedy.add_trajectory()
-    # greedy_results = Base(greedy.all_trajectories, greedy.trajectory_count, all_connections)
-
-    # run experiment and calculate score
-    # random_r.add_trajectory()
-    # random_r_results.calculate_score()
-    #
-    # random_nr.add_trajectory()
-    # random_nr_results.calculate_score()
-    #
-    score_optimizer.add_trajectory()
-    score_optimizer_results.calculate_intermediate_score()
-    #
-    # # Calculate the score
-    # greedy.add_trajectory()
-    # greedy_results.calculate_score()
-=======
     random_r.add_trajectory()
     random_r_results = Base(random_r.all_trajectories, random_r.trajectory_count, all_connections)
     random_r_results.calculate_score()
@@ -129,7 +99,6 @@ def main():
     # calculate the score
     greedy.add_trajectory()
     greedy_results.calculate_score()
->>>>>>> 89fd30a1f27281c7623d94517e71a0b9cd57f0cd
 
     # save results to csv
     random_r_results.to_csv('output/NL_output_r.csv')
@@ -138,17 +107,10 @@ def main():
     greedy_results.to_csv('output/NL_output_greedy.csv')
 
     # calculate and plot score distribution
-<<<<<<< HEAD
-    # ScoreDistribution(20000, Random_R, all_connections, 'output/NL_score_distribution_r.png', 'Score Distribution Random Return, Netherlands', 20, all_connections, 180)
-    # ScoreDistribution(20000, Random_NR, all_connections, 'output/NL_score_distribution_nr.png', 'Score Distribution Random No Return, Netherlands', 20, all_connections, 180)
-    ScoreDistribution(100, Score_Optimizer, all_connections, 'output/NL_score_distribution_so.png', 'Score Distribution Optimizer, Netherlands', 20, all_connections, 180)
-    # ScoreDistribution(20000, Greedy, all_connections, 'output/NL_score_distribution_greedy.png', 'Score Distribution Greedy, Netherlands', 20, all_connections, 180)
-=======
     ScoreDistribution(20000, Random_R, all_connections, 'output/NL_score_distribution_r.png', 'Score Distribution Random Return, Netherlands', 20, all_connections, 180)
     ScoreDistribution(20000, Random_NR, all_connections, 'output/NL_score_distribution_nr.png', 'Score Distribution Random No Return, Netherlands', 20, all_connections, 180)
     ScoreDistribution(20000, Score_Optimizer, all_connections, 'output/NL_score_distribution_so.png', 'Score Distribution Optimizer, Netherlands', 20, all_connections, 180)
     ScoreDistribution(20000, Greedy, all_connections, 'output/NL_score_distribution_greedy.png', 'Score Distribution Greedy, Netherlands', 20, all_connections, 180)
->>>>>>> 89fd30a1f27281c7623d94517e71a0b9cd57f0cd
 
     # plot all trajectories
     plotter = TrainNetwork('data/ConnectiesNationaal.csv', 'data/StationsNationaal.csv')
