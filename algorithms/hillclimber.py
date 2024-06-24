@@ -54,4 +54,25 @@ class HillClimber:
             new_station = random.choice(list(self.all_connections[trajectory[idx - 1]].keys()))
 
         mutated_trajectory = trajectory[:idx] + [new_station] + trajectory[idx + 1:]
+
         return mutated_trajectory
+
+    def run(self):
+        """Runs the hill-climbing algorithm to optimize trajectories."""
+        self.initialize_trajectories()
+        base_evaluator = Base(self.all_trajectories, self.trajectory_count, self.all_connections)
+        current_score = base_evaluator.calculate_score()
+
+        for _ in range(self.iterations):
+            new_trajectories = self.all_trajectories.copy()
+            random_train = random.choice(list(new_trajectories.keys())[:-1])  # Exclude the score key
+            new_trajectories[random_train] = self.mutate_trajectory(new_trajectories[random_train])
+
+            new_evaluator = Base(new_trajectories, self.trajectory_count, self.all_connections)
+            new_score = new_evaluator.calculate_score()
+
+            if new_score > current_score:
+                self.all_trajectories = new_trajectories
+                current_score = new_score
+
+        return self.all_trajectories, current_score
