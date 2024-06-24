@@ -18,6 +18,7 @@ class Score_Optimizer(Random_NR, Base):
             current_trajectory.append(connection)
             #
             self.all_trajectories[f"train_{self.trajectory_count + 1}"] = current_trajectory
+    
             # calculate score
             score = self.calculate_intermediate_score()
             # update best score and corresponding connection if the current score is higher
