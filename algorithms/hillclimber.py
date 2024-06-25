@@ -29,7 +29,7 @@ class HillClimber(Random_R):
         Number of iterations to run the hill-climbing algorithm.
     """
 
-    def __init__(self, max_trajectories, all_connections, max_time, iterations=10):
+    def __init__(self, max_trajectories, all_connections, max_time, iterations=51):
         super().__init__(max_trajectories, all_connections, max_time)
         self.iterations = iterations
         self.current_score = self.calculate_current_score()
@@ -39,26 +39,29 @@ class HillClimber(Random_R):
         return base.calculate_score()
 
     def run(self):
-
+        self.changes = 0
         for iteration in range(self.iterations):
             new_random_r = copy.deepcopy(self)
             new_random_r.remove_trajectory()
             new_random_r.add_trajectory()
 
             new_trajectories = {}
-            for k, v in new_random_r.all_trajectories.items():
-                if k != "score":
-                    new_trajectories[k] = v
+            for key, value in new_random_r.all_trajectories.items():
+                if key != "score":
+                    new_trajectories[key] = value
 
-            new_base = Base(new_trajectories,
-                            new_random_r.trajectory_count,
-                            self.all_connections)
+            new_base = Base(new_trajectories, new_random_r.trajectory_count, self.all_connections)
             new_score = new_base.calculate_score()
 
             if new_score > self.current_score:
                 self.all_trajectories = new_random_r.all_trajectories
                 self.trajectory_count = new_random_r.trajectory_count
                 self.current_score = new_score
+                self.changes += 1
                 print(f"Iteration {iteration + 1}: New better score found: {self.current_score}")
+
+            for key, value in new_random_r.all_trajectories.items():
+                if key != "score":
+                    new_trajectories[key] = new_score
 
         return self.all_trajectories, self.current_score
