@@ -58,7 +58,7 @@ def main():
 
     # Save results to csv
     hill_climber_results = Base(final_trajectories, hill_climber.trajectory_count, all_connections)
-    hill_climber_results.to_csv('output/NL_output_hill_climber.csv')
+    hill_climber_results.to_csv('output/output_hill_climber.csv')
 
     # # Calculate and plot score distribution
     # ScoreDistribution(1, HillClimber, all_connections, 'output/NL_score_distribution_hill_climber.png', 'Score Distribution Hill Climber, Holland', 20, all_connections, 180)
