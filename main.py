@@ -8,6 +8,7 @@ from algorithms.best_score import Score_Optimizer
 from classes.score_distribution import ScoreDistribution
 from algorithms.greedy import Greedy
 from algorithms.hillclimber import HillClimber
+import matplotlib.pyplot as plt
 import os
 
 def main():
@@ -47,27 +48,43 @@ def main():
     # score = greedy_results.calculate_score()
 
     # save results to csv
-    # random_r_results.to_csv('output/output_r.csv')
-    # random_nr_results.to_csv('output/output_nr.csv')
-    # score_optimizer_results.to_csv('output/output_so.csv')
-    # greedy_results.to_csv('output/output_greedy.csv')
+    # random_r_results.to_csv('output/Holland/output_r.csv')
+    # random_nr_results.to_csv('output/Holland/output_nr.csv')
+    # score_optimizer_results.to_csv('output/Holland/output_so.csv')
+    # greedy_results.to_csv('output/Holland/output_greedy.csv')
 
     # hill climber algorithm
-    hill_climber = HillClimber(20, all_connections, 180)
-    final_trajectories, final_score = hill_climber.run()
+    # hill_climber = HillClimber(20, all_connections, 180)
+    # final_trajectories, final_score = hill_climber.run()
+    #
+    # # Save results to csv
+    # hill_climber_results = Base(final_trajectories, hill_climber.trajectory_count, all_connections)
+    # hill_climber_results.to_csv('output/Holland/output_hill_climber.csv')
 
-    # Save results to csv
-    hill_climber_results = Base(final_trajectories, hill_climber.trajectory_count, all_connections)
-    hill_climber_results.to_csv('output/output_hill_climber.csv')
+    scores = []
+    for i in range(3000):
+        hill_climber = HillClimber(20, all_connections, 180)
+        final_trajectories, final_score = hill_climber.run()
+        scores.append(final_score)
+
+        if i % 100 == 0 and i != 0:
+            print(f"Iteration {i}")
+
+    plt.figure(figsize=(10, 6))
+    plt.hist(scores, bins=20, edgecolor='black')
+    plt.title('Score Distribution Hill Climber, Holland')
+    plt.xlabel('Score')
+    plt.ylabel('Frequency')
+    plt.savefig('output/Holland/score_distribution_hill_climber.png')
 
     # # Calculate and plot score distribution
-    ScoreDistribution(1, HillClimber, all_connections, 'output/NL_score_distribution_hill_climber.png', 'Score Distribution Hill Climber, Holland', 20, all_connections, 180)
+    # ScoreDistribution(100, HillClimber, all_connections, 'output/Holland/score_distribution_hill_climber.png', 'Score Distribution Hill Climber, Holland', 20, all_connections, 180)
 
     # calculate and plot score distribution
-    # ScoreDistribution(20000, Random_R, all_connections, 'output/score_distribution_r.png', 'Score Distribution Random Return', 7, all_connections, 120)
-    # ScoreDistribution(20000, Random_NR, all_connections, 'output/score_distribution_nr.png', 'Score Distribution Random No Return', 7, all_connections, 120)
-    # ScoreDistribution(20000, Score_Optimizer, all_connections, 'output/score_distribution_so.png', 'Score Distribution Optimizer', 7, all_connections, 120)
-    # ScoreDistribution(20000, Greedy, all_connections, 'output/score_distribution_greedy.png', 'Score Distribution Greedy', 7, all_connections, 120)
+    # ScoreDistribution(20000, Random_R, all_connections, 'output/Holland/score_distribution_r.png', 'Score Distribution Random Return', 7, all_connections, 120)
+    # ScoreDistribution(20000, Random_NR, all_connections, 'output/Holland/score_distribution_nr.png', 'Score Distribution Random No Return', 7, all_connections, 120)
+    # ScoreDistribution(20000, Score_Optimizer, all_connections, 'output/Holland/score_distribution_so.png', 'Score Distribution Optimizer', 7, all_connections, 120)
+    # ScoreDistribution(20000, Greedy, all_connections, 'output/Holland/score_distribution_greedy.png', 'Score Distribution Greedy', 7, all_connections, 120)
     #
     # # plot all trajectories
     # plotter = TrainNetwork('data/ConnectiesHolland.csv', 'data/StationsHolland.csv')
@@ -113,16 +130,16 @@ def main():
     # greedy_results.calculate_score()
     #
     # # # save results to csv
-    # # random_r_results.to_csv('output/NL_output_r.csv')
-    # # random_nr_results.to_csv('output/NL_output_nr.csv')
-    # # score_optimizer_results.to_csv('output/NL_output_so.csv')
-    # # greedy_results.to_csv('output/NL_output_greedy.csv')
+    # # random_r_results.to_csv('output/Nederland/NL_output_r.csv')
+    # # random_nr_results.to_csv('output/Nederland/NL_output_nr.csv')
+    # # score_optimizer_results.to_csv('output/Nederland/NL_output_so.csv')
+    # # greedy_results.to_csv('output/Nederland/NL_output_greedy.csv')
     #
     # # calculate and plot score distribution
-    # ScoreDistribution(20000, Random_R, all_connections, 'output/NL_score_distribution_r.png', 'Score Distribution Random Return, Netherlands', 20, all_connections, 180)
-    # ScoreDistribution(20000, Random_NR, all_connections, 'output/NL_score_distribution_nr.png', 'Score Distribution Random No Return, Netherlands', 20, all_connections, 180)
-    # ScoreDistribution(20000, Score_Optimizer, all_connections, 'output/NL_score_distribution_so.png', 'Score Distribution Optimizer, Netherlands', 20, all_connections, 180)
-    # ScoreDistribution(20000, Greedy, all_connections, 'output/NL_score_distribution_greedy.png', 'Score Distribution Greedy, Netherlands', 20, all_connections, 180)
+    # ScoreDistribution(20000, Random_R, all_connections, 'output/Nederland/NL_score_distribution_r.png', 'Score Distribution Random Return, Netherlands', 20, all_connections, 180)
+    # ScoreDistribution(20000, Random_NR, all_connections, 'output/Nederland/NL_score_distribution_nr.png', 'Score Distribution Random No Return, Netherlands', 20, all_connections, 180)
+    # ScoreDistribution(20000, Score_Optimizer, all_connections, 'output/Nederland/NL_score_distribution_so.png', 'Score Distribution Optimizer, Netherlands', 20, all_connections, 180)
+    # ScoreDistribution(20000, Greedy, all_connections, 'output/Nederland/NL_score_distribution_greedy.png', 'Score Distribution Greedy, Netherlands', 20, all_connections, 180)
     #
     # # plot all trajectories
     # plotter = TrainNetwork('data/ConnectiesNationaal.csv', 'data/StationsNationaal.csv')

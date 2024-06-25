@@ -58,7 +58,7 @@ class HillClimber(Random_R):
                 self.trajectory_count = new_random_r.trajectory_count
                 self.current_score = new_score
                 self.changes += 1
-                print(f"Iteration {iteration + 1}: New better score found: {self.current_score}")
+                # print(f"Iteration {iteration + 1}: New better score found: {self.current_score}")
 
         # assign final score to all_trajectories
         self.all_trajectories['score'] = self.current_score
