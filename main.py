@@ -62,13 +62,13 @@ def main():
     # hill_climber_results.to_csv('output/Holland/output_hill_climber.csv')
 
     scores = []
-    for i in range(1000):
+    for i in range(3000):
         hill_climber = HillClimber(20, all_connections, 180)
         final_trajectories, final_score = hill_climber.run()
         scores.append(final_score)
 
-        if i == 500:
-            print("iteration 500")
+        if i % 100 == 0 and i != 0:
+            print(f"Iteration {i}")
 
     plt.figure(figsize=(10, 6))
     plt.hist(scores, bins=20, edgecolor='black')
