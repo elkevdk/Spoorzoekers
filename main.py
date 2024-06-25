@@ -1,14 +1,14 @@
 from classes.loading_data import LoadData
-from output.visualize import TrainNetwork
-from output.visualize2 import PlotTrains
+from classes.score_distribution import ScoreDistribution
+from classes.hillclimber_score import HillClimberScore
 from algorithms.base import Base
 from algorithms.random_R import Random_R
 from algorithms.random_NR import Random_NR
 from algorithms.best_score import Score_Optimizer
-from classes.score_distribution import ScoreDistribution
 from algorithms.greedy import Greedy
 from algorithms.hillclimber import HillClimber
-import matplotlib.pyplot as plt
+from output.visualize import TrainNetwork
+from output.visualize2 import PlotTrains
 import os
 
 def main():
@@ -61,28 +61,11 @@ def main():
     # hill_climber_results = Base(final_trajectories, hill_climber.trajectory_count, all_connections)
     # hill_climber_results.to_csv('output/Holland/output_hill_climber.csv')
 
-    amount_runs = [250, 500, 750, 1000]
+    # Calculate and plot score distribution
+    amount_runs = [500, 1000]
     remove_counts = [1, 2, 3, 4]
-    scores = []
-    for runs in amount_runs:
-        for count in remove_counts:
-            for i in range(10000):
-                hill_climber = HillClimber(7, all_connections, 120, iterations=runs, remove_count=count)
-                final_trajectories, final_score = hill_climber.run()
-                scores.append(final_score)
-
-                if i % 100 == 0 and i != 0:
-                    print(f"Iteration {i}")
-
-            plt.figure(figsize=(10, 6))
-            plt.hist(scores, bins=20, edgecolor='black')
-            plt.title(f'Score Distribution Hill Climber, Holland. Runs: {runs} Trajectories Removed: {count}')
-            plt.xlabel('Score')
-            plt.ylabel('Frequency')
-            plt.savefig(f'output/Holland/score_distribution_hillclimber_{runs}_{count}.png')
-
-    # # Calculate and plot score distribution
-    # ScoreDistribution(100, HillClimber, all_connections, 'output/Holland/score_distribution_hill_climber.png', 'Score Distribution Hill Climber, Holland', 20, all_connections, 180)
+    score = HillClimberScore(amount_runs, remove_counts, all_connections, 100, 7, 120)
+    score.run_distributions()
 
     # calculate and plot score distribution
     # ScoreDistribution(20000, Random_R, all_connections, 'output/Holland/score_distribution_r.png', 'Score Distribution Random Return', 7, all_connections, 120)
