@@ -61,13 +61,15 @@ def main():
     # hill_climber_results = Base(final_trajectories, hill_climber.trajectory_count, all_connections)
     # hill_climber_results.to_csv('output/Holland/output_hill_climber.csv')
 
+    random_changes = [50, 10, 150]
+    remove_counts = [1, 2, 3]
     scores = []
-    for i in range(3000):
-        hill_climber = HillClimber(20, all_connections, 180)
+    for i in range(20000):
+        hill_climber = HillClimber(7, all_connections, 120)
         final_trajectories, final_score = hill_climber.run()
         scores.append(final_score)
 
-        if i % 100 == 0 and i != 0:
+        if i % 1000 == 0 and i != 0:
             print(f"Iteration {i}")
 
     plt.figure(figsize=(10, 6))
