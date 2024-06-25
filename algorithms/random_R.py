@@ -114,7 +114,8 @@ class Random_R:
         return self.all_trajectories
 
     def remove_trajectory(self):
-        if self.all_trajectories:
-            key_to_remove = random.choice([k for k in self.all_trajectories.keys() if k != "score"])
+        keys_to_choose_from = [k for k in self.all_trajectories.keys() if k != "score"]
+        if keys_to_choose_from:
+            key_to_remove = random.choice(keys_to_choose_from)
             del self.all_trajectories[key_to_remove]
             self.trajectory_count -= 1
