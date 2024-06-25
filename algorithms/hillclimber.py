@@ -1,73 +1,58 @@
-from algorithms.random_R import Random_R
+import copy
 from algorithms.base import Base
-import random
+from algorithms.random_R import Random_R
 
-class HillClimber(Random_R, Base):
-    def __init__(self, max_iterations, all_connections, max_time):
-        super().__init__({}, 0, all_connections)  # Initialize with empty trajectories
-        self.max_iterations = max_iterations
-        self.max_time = max_time
-        self.best_score = float('-inf')
-        self.best_trajectories = {}
+class HillClimber(Random_R):
+    """
+    Class that runs a hill-climbing optimization to improve a set of trajectories.
+
+    Parameters
+    ----------
+    max_trajectories : int
+        Maximum number of trajectories to generate.
+    all_connections : dict
+        Dictionary containing all possible connections between stations and their durations.
+    max_time : int
+        Maximum time a trajectory is allowed to take.
+    iterations : int
+        Number of iterations to run the hill-climbing algorithm.
+
+    Attributes
+    ----------
+    max_trajectories : int
+        Maximum number of trajectories to generate.
+    all_connections : dict
+        Dictionary containing all possible connections between stations and their durations.
+    max_time : int
+        Maximum time a trajectory is allowed to take.
+    iterations : int
+        Number of iterations to run the hill-climbing algorithm.
+    """
+
+    def __init__(self, max_trajectories, all_connections, max_time, iterations=10):
+        super().__init__(max_trajectories, all_connections, max_time)
+        self.iterations = iterations
+        self.current_score = self.calculate_current_score()
+
+    def calculate_current_score(self):
+        base = Base(self.all_trajectories, self.trajectory_count, self.all_connections)
+        return base.calculate_score()
 
     def run(self):
-        # Initial random trajectories
-        random_r = Random_R(7, self.all_connections, self.max_time)
-        initial_trajectories = random_r.add_trajectory()
-        self.best_trajectories = initial_trajectories
-        self.best_score = self.calculate_score()
+        for iteration in range(self.iterations):
+            new_random_r = copy.deepcopy(self)
+            new_random_r.remove_trajectory()
+            new_random_r.add_trajectory()
 
-        for _ in range(self.max_iterations):
-            # Modify trajectories to explore the neighborhood
-            new_trajectories = self.modify_trajectories(self.best_trajectories)
-            new_score = self.calculate_score(new_trajectories)
+            new_base = Base({k: v for k, v in new_random_r.all_trajectories.items() if k != "score"},
+                            new_random_r.trajectory_count,
+                            self.all_connections)
+            new_score = new_base.calculate_score()
 
-            if new_score > self.best_score:
-                self.best_trajectories = new_trajectories
-                self.best_score = new_score
+            if new_score > self.current_score:
+                self.all_trajectories = new_random_r.all_trajectories
+                self.trajectory_count = new_random_r.trajectory_count
+                self.current_score = new_score
+                print(f"Iteration {iteration + 1}: New better score found: {self.current_score}")
 
-        return self.best_trajectories, self.best_score
-
-    def modify_trajectories(self, trajectories):
-        new_trajectories = trajectories.copy()
-        # Ignore the 'score' key when modifying
-        trajectory_keys = [key for key in new_trajectories if key != 'score']
-        if trajectory_keys:
-            trajectory_key = random.choice(trajectory_keys)
-            if isinstance(new_trajectories[trajectory_key], list) and len(new_trajectories[trajectory_key]) > 1:
-                new_trajectories[trajectory_key] = new_trajectories[trajectory_key][:-1]
-        return new_trajectories
-
-    def calculate_score(self, trajectories=None):
-        t = self.trajectory_count
-
-        unique_connections = set()
-        for key, trajectory in self.all_trajectories.items():
-            if key == 'score':  # Skip the score key
-                continue
-            if not isinstance(trajectory, list):
-                raise TypeError(f"Trajectory for key {key} is not a list: {trajectory}")
-            for i in range(len(trajectory) - 1):
-                connection = frozenset((trajectory[i], trajectory[i + 1]))
-                unique_connections.add(connection)
-
-        total_connections = 0
-        for connections in self.all_connections.values():
-            total_connections += len(connections)
-
-        p = len(unique_connections) / (total_connections / 2)
-
-        minutes = 0
-        for key, trajectory in self.all_trajectories.items():
-            if key == 'score':  # Skip the score key
-                continue
-            for i in range(len(trajectory) - 1):
-                current_station = trajectory[i]
-                next_station = trajectory[i + 1]
-                minutes += self.all_connections[current_station][next_station]
-
-        k = p * 10000 - (t * 100 + minutes)
-
-        self.all_trajectories["score"] = k
-
-        return k
+        return self.all_trajectories, self.current_score

@@ -53,12 +53,21 @@ class Random_R:
 
     def calculate_p(self, total_connections):
         unique_connections = set()
-        for trajectory in self.all_trajectories.values():
-            for i in range(len(trajectory) - 1):
-                connection = frozenset((trajectory[i], trajectory[i + 1]))
-                unique_connections.add(connection)
+        for key, trajectory in self.all_trajectories.items():
+            if isinstance(trajectory, list):  # Ensure the value is a list
+                for i in range(len(trajectory) - 1):
+                    connection = frozenset((trajectory[i], trajectory[i + 1]))
+                    unique_connections.add(connection)
         p = len(unique_connections) / (total_connections / 2)
         return p
+
+        # unique_connections = set()
+        # for trajectory in self.all_trajectories.values():
+        #     for i in range(len(trajectory) - 1):
+        #         connection = frozenset((trajectory[i], trajectory[i + 1]))
+        #         unique_connections.add(connection)
+        # p = len(unique_connections) / (total_connections / 2)
+        # return p
 
     def select_next_station(self, possible_connections):
         return random.choice(possible_connections)
@@ -105,4 +114,7 @@ class Random_R:
         return self.all_trajectories
 
     def remove_trajectory(self):
-        self.all_trajectories.remove(trajectory)
+        if self.all_trajectories:
+            key_to_remove = random.choice([k for k in self.all_trajectories.keys() if k != "score"])
+            del self.all_trajectories[key_to_remove]
+            self.trajectory_count -= 1
