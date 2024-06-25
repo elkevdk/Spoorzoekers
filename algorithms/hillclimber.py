@@ -39,12 +39,18 @@ class HillClimber(Random_R):
         return base.calculate_score()
 
     def run(self):
+
         for iteration in range(self.iterations):
             new_random_r = copy.deepcopy(self)
             new_random_r.remove_trajectory()
             new_random_r.add_trajectory()
 
-            new_base = Base({k: v for k, v in new_random_r.all_trajectories.items() if k != "score"},
+            new_trajectories = {}
+            for k, v in new_random_r.all_trajectories.items():
+                if k != "score":
+                    new_trajectories[k] = v
+
+            new_base = Base(new_trajectories,
                             new_random_r.trajectory_count,
                             self.all_connections)
             new_score = new_base.calculate_score()
