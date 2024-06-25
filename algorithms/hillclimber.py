@@ -29,7 +29,7 @@ class HillClimber(Random_R):
         Number of iterations to run the hill-climbing algorithm.
     """
 
-    def __init__(self, max_trajectories, all_connections, max_time, iterations=51):
+    def __init__(self, max_trajectories, all_connections, max_time, iterations=1000):
         super().__init__(max_trajectories, all_connections, max_time)
         self.iterations = iterations
         self.current_score = self.calculate_current_score()

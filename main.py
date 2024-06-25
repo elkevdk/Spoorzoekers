@@ -62,8 +62,8 @@ def main():
     # hill_climber_results.to_csv('output/Holland/output_hill_climber.csv')
 
     scores = []
-    for i in range(3000):
-        hill_climber = HillClimber(20, all_connections, 180)
+    for i in range(10000):
+        hill_climber = HillClimber(7, all_connections, 120)
         final_trajectories, final_score = hill_climber.run()
         scores.append(final_score)
 
