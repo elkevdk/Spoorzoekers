@@ -19,10 +19,18 @@ Each pathway has a maximum time length.
 The train lining system has a maximum number of pathways.
 Task: Create a heuristic algorithm in Python that maximizes the objective function 𝐾 while adhering to the given conditions.
 
-# Method
+# Structure
+This github contains four folders: algorithms, classes, data and output. Inside the 'data' folder, all csv files are stored.
+
+# Testing
+To run the code and test the different algorithms, please enter the following code in your terminal:
+
+python main.py
 
 # Authors
 - Elke van der Kooij
 - Mila Vogels
 - Marinne van Willigenburg
 
+# Acknowledgements
+We want to thank the minor AI for all the new things we learned. We also want to thank Jacob and Nina for helping us during the progress of this assignment.
