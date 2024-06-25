@@ -45,7 +45,10 @@ class HillClimber(Random_R):
             new_random_r.remove_trajectory()
             new_random_r.add_trajectory()
 
-            new_trajectories = {k: v for k, v in new_random_r.all_trajectories.items() if k != "score"}
+            new_trajectories = {}
+            for key, value in new_random_r.all_trajectories.items():
+                if key != "score":
+                    new_trajectories[key] = value
 
             new_base = Base(new_trajectories, new_random_r.trajectory_count, self.all_connections)
             new_score = new_base.calculate_score()
@@ -57,7 +60,7 @@ class HillClimber(Random_R):
                 self.changes += 1
                 print(f"Iteration {iteration + 1}: New better score found: {self.current_score}")
 
-        # assign final score to all_trajectories 
+        # assign final score to all_trajectories
         self.all_trajectories['score'] = self.current_score
 
         return self.all_trajectories, self.current_score
