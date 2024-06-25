@@ -31,3 +31,5 @@ python main.py
 - Mila Vogels
 - Marinne van Willigenburg
 
+# Acknowledgements
+We want to thank the minor AI for all the new things we learned. We also want to thank Jacob and Nina for helping us during the progress of this assignment.
