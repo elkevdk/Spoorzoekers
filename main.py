@@ -61,7 +61,7 @@ def main():
     hill_climber_results.to_csv('output/NL_output_hill_climber.csv')
 
     # Calculate and plot score distribution
-    ScoreDistribution(1, HillClimber, all_connections, 'output/NL_score_distribution_hill_climber.png', 'Score Distribution Hill Climber, Holland', 20, all_connections, 180)
+    # ScoreDistribution(1, HillClimber, all_connections, 'output/NL_score_distribution_hill_climber.png', 'Score Distribution Hill Climber, Holland', 20, all_connections, 180)
 
     # calculate and plot score distribution
     # ScoreDistribution(20000, Random_R, all_connections, 'output/score_distribution_r.png', 'Score Distribution Random Return', 7, all_connections, 120)
