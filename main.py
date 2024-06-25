@@ -33,18 +33,18 @@ def main():
     random_nr_results.calculate_score()
 
     # score_optimizer algorithm
-    score_optimizer = Score_Optimizer(7, all_connections, 120)
-    score_optimizer.add_trajectory()
-    score_optimizer_results = Base(score_optimizer.all_trajectories, score_optimizer.trajectory_count, all_connections)
-    score_optimizer_results.calculate_score()
-
-    # greedy algorithm
-    greedy = Greedy(7, all_connections, 120)
-    greedy.add_trajectory()
-    greedy_results = Base(greedy.all_trajectories, greedy.trajectory_count, all_connections)
+    # score_optimizer = Score_Optimizer(7, all_connections, 120)
+    # score_optimizer.add_trajectory()
+    # score_optimizer_results = Base(score_optimizer.all_trajectories, score_optimizer.trajectory_count, all_connections)
+    # score_optimizer_results.calculate_score()
+    #
+    # # greedy algorithm
+    # greedy = Greedy(7, all_connections, 120)
+    # greedy.add_trajectory()
+    # greedy_results = Base(greedy.all_trajectories, greedy.trajectory_count, all_connections)
 
     # calculate the score
-    score = greedy_results.calculate_score()
+    # score = greedy_results.calculate_score()
 
     # save results to csv
     # random_r_results.to_csv('output/output_r.csv')
