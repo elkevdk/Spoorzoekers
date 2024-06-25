@@ -61,21 +61,25 @@ def main():
     # hill_climber_results = Base(final_trajectories, hill_climber.trajectory_count, all_connections)
     # hill_climber_results.to_csv('output/Holland/output_hill_climber.csv')
 
+    amount_runs = [250, 500, 750, 1000]
+    remove_counts = [1, 2, 3, 4]
     scores = []
-    for i in range(10000):
-        hill_climber = HillClimber(7, all_connections, 120)
-        final_trajectories, final_score = hill_climber.run()
-        scores.append(final_score)
+    for runs in amount_runs:
+        for count in remove_counts:
+            for i in range(10000):
+                hill_climber = HillClimber(7, all_connections, 120, iterations=runs, remove_count=count)
+                final_trajectories, final_score = hill_climber.run()
+                scores.append(final_score)
 
-        if i % 100 == 0 and i != 0:
-            print(f"Iteration {i}")
+                if i % 100 == 0 and i != 0:
+                    print(f"Iteration {i}")
 
-    plt.figure(figsize=(10, 6))
-    plt.hist(scores, bins=20, edgecolor='black')
-    plt.title('Score Distribution Hill Climber, Holland')
-    plt.xlabel('Score')
-    plt.ylabel('Frequency')
-    plt.savefig('output/Holland/score_distribution_hill_climber.png')
+            plt.figure(figsize=(10, 6))
+            plt.hist(scores, bins=20, edgecolor='black')
+            plt.title(f'Score Distribution Hill Climber, Holland. Runs: {runs} Trajectories Removed: {count}')
+            plt.xlabel('Score')
+            plt.ylabel('Frequency')
+            plt.savefig(f'output/Holland/score_distribution_hillclimber_{runs}_{count}.png')
 
     # # Calculate and plot score distribution
     # ScoreDistribution(100, HillClimber, all_connections, 'output/Holland/score_distribution_hill_climber.png', 'Score Distribution Hill Climber, Holland', 20, all_connections, 180)
