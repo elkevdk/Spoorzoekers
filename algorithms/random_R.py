@@ -81,6 +81,16 @@ class Random_R:
         # base class does not filter out the previous station
         return possible_connections
 
+    def renumber_trajectories(self):
+        """
+        Renumber the trajectories to ensure the keys are numbered 1 through N sequentially.
+        """
+        new_all_trajectories = {}
+        for i, (key, value) in enumerate(self.all_trajectories.items(), 1):
+            if key != "score":
+                new_all_trajectories[f"train_{i}"] = value
+        self.all_trajectories = new_all_trajectories
+
     def add_trajectory(self):
         total_connections = self.calculate_total_connections()
 
@@ -110,7 +120,7 @@ class Random_R:
 
             self.trajectory_count += 1
             self.all_trajectories[f"train_{self.trajectory_count}"] = self.connections
-
+        self.renumber_trajectories()
         return self.all_trajectories
 
     def remove_trajectory(self):
@@ -119,3 +129,4 @@ class Random_R:
             key_to_remove = random.choice(keys_to_choose_from)
             del self.all_trajectories[key_to_remove]
             self.trajectory_count -= 1
+            self.renumber_trajectories()
