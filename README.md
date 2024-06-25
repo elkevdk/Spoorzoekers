@@ -21,6 +21,10 @@ Task: Create a heuristic algorithm in Python that maximizes the objective functi
 
 # Method
 
+# Testing
+To run the code and test the different algorithms, please enter the following code in your terminal:
+python main.py
+
 # Authors
 - Elke van der Kooij
 - Mila Vogels
