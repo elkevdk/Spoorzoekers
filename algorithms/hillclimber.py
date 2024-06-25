@@ -29,7 +29,7 @@ class HillClimber:
         Number of iterations to run the hill-climbing algorithm.
     """
 
-    def __init__(self, max_trajectories, all_connections, max_time, iterations=1000):
+    def __init__(self, max_trajectories, all_connections, max_time, iterations=10):
         self.max_trajectories = max_trajectories
         self.all_trajectories = {}
         self.all_connections = all_connections
