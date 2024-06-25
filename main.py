@@ -20,31 +20,31 @@ def main():
     all_connections = data.connections
     all_stations = data.stations
 
-    # random return algorithm
-    random_r = Random_R(7, all_connections, 120)
-    random_r.add_trajectory()
-    random_r_results = Base(random_r.all_trajectories, random_r.trajectory_count, all_connections)
-    random_r_results.calculate_score()
-
-    # random no return algorithm
-    random_nr = Random_NR(7, all_connections, 120)
-    random_nr.add_trajectory()
-    random_nr_results = Base(random_nr.all_trajectories, random_nr.trajectory_count, all_connections)
-    random_nr_results.calculate_score()
-
-    # score_optimizer algorithm
-    score_optimizer = Score_Optimizer(7, all_connections, 120)
-    score_optimizer.add_trajectory()
-    score_optimizer_results = Base(score_optimizer.all_trajectories, score_optimizer.trajectory_count, all_connections)
-    score_optimizer_results.calculate_score()
-
-    # greedy algorithm
-    greedy = Greedy(7, all_connections, 120)
-    greedy.add_trajectory()
-    greedy_results = Base(greedy.all_trajectories, greedy.trajectory_count, all_connections)
-
-    # calculate the score
-    score = greedy_results.calculate_score()
+    # # random return algorithm
+    # random_r = Random_R(7, all_connections, 120)
+    # random_r.add_trajectory()
+    # random_r_results = Base(random_r.all_trajectories, random_r.trajectory_count, all_connections)
+    # random_r_results.calculate_score()
+    #
+    # # random no return algorithm
+    # random_nr = Random_NR(7, all_connections, 120)
+    # random_nr.add_trajectory()
+    # random_nr_results = Base(random_nr.all_trajectories, random_nr.trajectory_count, all_connections)
+    # random_nr_results.calculate_score()
+    #
+    # # score_optimizer algorithm
+    # score_optimizer = Score_Optimizer(7, all_connections, 120)
+    # score_optimizer.add_trajectory()
+    # score_optimizer_results = Base(score_optimizer.all_trajectories, score_optimizer.trajectory_count, all_connections)
+    # score_optimizer_results.calculate_score()
+    #
+    # # greedy algorithm
+    # greedy = Greedy(7, all_connections, 120)
+    # greedy.add_trajectory()
+    # greedy_results = Base(greedy.all_trajectories, greedy.trajectory_count, all_connections)
+    #
+    # # calculate the score
+    # score = greedy_results.calculate_score()
 
     # save results to csv
     # random_r_results.to_csv('output/output_r.csv')
