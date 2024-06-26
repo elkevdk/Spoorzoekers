@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 class HillClimberScore():
     """
-    Class that runs multiple hill climber experiments and generates score distributions.
+    Class that runs multiple hill-climbing experiments and generates score distributions.
 
     Parameters
     ----------
@@ -54,6 +54,11 @@ class HillClimberScore():
         self.region = region
 
     def run_distributions(self):
+        """
+        For each combination of runs and remove_counts, this method runs the hill-climbing
+        optimization for the specified number of iterations, collects the final scores,
+        and plots a histogram of the score distribution. The histogram is saved to a file in the output folder.
+        """
         scores = []
         for runs in self.amount_runs:
             for count in self.remove_counts:
@@ -65,6 +70,7 @@ class HillClimberScore():
                     if i % 10 == 0 and i != 0:
                         print(f"Iteration {i}")
 
+                # plot and save the histogram
                 plt.figure(figsize=(10, 6))
                 plt.hist(scores, bins=20, edgecolor='black')
                 plt.title(f'Score Distribution Hill Climber, Holland. Runs: {runs} Trajectories Removed: {count}')
