@@ -45,6 +45,7 @@ class HillClimberScore():
         Runs hill climber experiments and generates score distributions as histograms.
     """
     def __init__(self, amount_runs, remove_counts, all_connections, iterations, trajectories, time, region):
+        # initialize class with given parameters
         self.amount_runs = amount_runs
         self.remove_counts = remove_counts
         self.all_connections = all_connections
@@ -60,13 +61,17 @@ class HillClimberScore():
         and plots a histogram of the score distribution. The histogram is saved to a file in the output folder.
         """
         scores = []
+
+        # loop over ech combinatino of runs and remove_counts
         for runs in self.amount_runs:
             for count in self.remove_counts:
+                # run hill climber for iteration number of times
                 for i in range(self.iterations):
+                    # initialize hill climber with current parameters
                     hill_climber = HillClimber(self.trajectories, self.all_connections, self.time, iterations=runs, remove_count=count)
                     final_trajectories, final_score = hill_climber.run()
                     scores.append(final_score)
-
+                    
                     if i % 10 == 0 and i != 0:
                         print(f"Iteration {i}")
 
