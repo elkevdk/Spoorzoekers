@@ -41,18 +41,22 @@ class Base():
     def calculate_score(self):
         t = self.trajectory_count
 
+        # calculate unique connections
         unique_connections = set()
         for trajectory in self.all_trajectories.values():
             for i in range(len(trajectory) - 1):
                 connection = frozenset((trajectory[i], trajectory[i + 1]))
                 unique_connections.add(connection)
 
+        # calculate the total number of possible connections
         total_connections = 0
         for connections in self.all_connections.values():
             total_connections += len(connections)
 
+        # calculate proportion of unique connections
         p = len(unique_connections) / (total_connections / 2)
 
+        # calculate total travel time
         minutes = 0
         for trajectory in self.all_trajectories.values():
             for i in range(len(trajectory) - 1):
@@ -60,8 +64,10 @@ class Base():
                 next_station = trajectory[i + 1]
                 minutes += self.all_connections[current_station][next_station]
 
+        # calculate the final score
         k = p * 10000 - (t * 100 + minutes)
 
+        # store the score in the all_trajectories dictionary
         self.all_trajectories["score"] = k
 
         return k
@@ -69,6 +75,7 @@ class Base():
     def calculate_intermediate_score(self):
         t = self.trajectory_count
 
+        # calculate unique connections, excluding thee last station in each trajectory
         unique_connections = set()
         for trajectory in self.all_trajectories.values():
             trajectory_loop = trajectory[:-1]
@@ -76,12 +83,15 @@ class Base():
                 connection = frozenset((trajectory_loop[i], trajectory_loop[i + 1]))
                 unique_connections.add(connection)
 
+        # calculate the total number of possible connectinos
         total_connections = 0
         for connections in self.all_connections.values():
             total_connections += len(connections)
 
+        # calculate the proportion of unique connections
         p = len(unique_connections) / (total_connections / 2)
 
+        # calculate the total travel time, excluding the last station in each trajectory
         minutes = 0
         for trajectory in self.all_trajectories.values():
             for i in range(len(trajectory_loop) - 1):
@@ -89,6 +99,7 @@ class Base():
                 next_station = trajectory_loop[i + 1]
                 minutes += self.all_connections[current_station][next_station]
 
+        # calculate the intermediate score
         k = p * 10000 - (t * 100 + minutes)
 
         self.all_trajectories["score"] = k
@@ -102,5 +113,6 @@ class Base():
             # write header
             csv_writer.writerow(["train", "stations"])
 
+            # write each trajectory and its stations
             for train, stations in self.all_trajectories.items():
                     csv_writer.writerow((train, stations))
