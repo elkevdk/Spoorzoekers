@@ -1,6 +1,6 @@
 # RailNL
 
-In this README we give a little explanation about this case: RailNL.
+This README gives a short explanation about the case: RailNL.
 
 # Assignment
 Project Assignment: Optimizing Intercity Train Lining System
