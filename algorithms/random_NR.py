@@ -22,4 +22,5 @@ class Random_NR(Random_R):
                         filtered_connections.append(station)
                 # Update the possible connections with the filtered list
                 possible_connections = filtered_connections
+                
         return possible_connections
