@@ -61,7 +61,7 @@ def main():
     # hill_climber_results = Base(final_trajectories, hill_climber.trajectory_count, all_connections)
     # hill_climber_results.to_csv('output/Holland/output_hill_climber.csv')
 
-    amount_runs = [250, 500, 750, 1000]
+    amount_runs = [500, 1000]
     remove_counts = [1, 2, 3, 4]
     scores = []
     for runs in amount_runs:
