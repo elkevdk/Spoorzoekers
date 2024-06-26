@@ -96,9 +96,6 @@ class Random_R:
         return possible_connections
 
     def renumber_trajectories(self):
-        """
-        Renumber the trajectories to ensure the keys are numbered 1 through N sequentially.
-        """
         new_all_trajectories = {}
         for i, (key, value) in enumerate(self.all_trajectories.items(), 1):
             if key != "score":
