@@ -67,7 +67,8 @@ def main():
         greedy_results.to_csv(f'output/{args.region}/output_greedy.csv')
 
     elif args.algorithm == 'hill_climber':
-        hill_climber = HillClimber(max_trajectories, all_connections, max_time, iterations=100, remove_count=1)
+        hill_climber = HillClimber(args.max_trajectories, all_connections, max_time, 1000, 1)
+        hill_climber.to_csv(f'output/{args.region}/output_hillclimber_1_1000.csv')
         score = HillClimberScore([args.runs], args.remove_counts, all_connections, 100, args.max_trajectories, args.max_time)
         score.run_distributions()
 
