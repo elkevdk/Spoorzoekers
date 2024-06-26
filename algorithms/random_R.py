@@ -1,6 +1,6 @@
 import random
 
-class Random_R:
+class Random_R():
     """
     Class that runs an experiment with a set of trajectories without filtering the previous station.
 

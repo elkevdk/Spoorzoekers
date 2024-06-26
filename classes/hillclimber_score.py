@@ -2,6 +2,48 @@ from algorithms.hillclimber import HillClimber
 import matplotlib.pyplot as plt
 
 class HillClimberScore():
+    """
+    Class that runs multiple hill climber experiments and generates score distributions.
+
+    Parameters
+    ----------
+    amount_runs : list of int
+        List of the number of runs for each experiment.
+    remove_counts : list of int
+        List of the number of trajectories to remove in each experiment.
+    all_connections : dict
+        Dictionary containing all possible connections between stations and their durations.
+    iterations : int
+        Number of iterations for each hill climber run.
+    trajectories : dict
+        Dictionary to store trajectories.
+    time : int
+        Maximum time a trajectory is allowed to take.
+    region : str
+        Region name used for saving the output files.
+
+    Attributes
+    ----------
+    amount_runs : list of int
+        List of the number of runs for each experiment.
+    remove_counts : list of int
+        List of the number of trajectories to remove in each experiment.
+    all_connections : dict
+        Dictionary containing all possible connections between stations and their durations.
+    iterations : int
+        Number of iterations for each hill climber run.
+    trajectories : dict
+        Dictionary to store trajectories.
+    time : int
+        Maximum time a trajectory is allowed to take.
+    region : str
+        Region name used for saving the output files.
+
+    Methods
+    -------
+    run_distributions()
+        Runs hill climber experiments and generates score distributions as histograms.
+    """
     def __init__(self, amount_runs, remove_counts, all_connections, iterations, trajectories, time, region):
         self.amount_runs = amount_runs
         self.remove_counts = remove_counts
