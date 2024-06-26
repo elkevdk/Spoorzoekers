@@ -7,13 +7,16 @@ class LoadData():
     station which are the connection ddata and station data, respectively, stored
     in dictionary structures.
 
-    Attributes:
-    connections (dict): cotains stations as keys and dictionaries of the connections
-                        between stations as values.
-    stations (dict): contains station IDs for keys and tuples of coordinates (x,y)
-                     as values.
+    Attributes
+    ----------
+    connections: dict
+        cotains stations as keys and dictionaries of the connections between
+        stations as values.
+    stations: dict
+        contains station IDs for keys and tuples of coordinates (x,y) as values.
 
-    Methods:
+    Methods
+    ----------
     __init__(connection_file, station_file):
         Initializes the LoadData class by loading connection and station data from the provided files.
     load_connections(file):
