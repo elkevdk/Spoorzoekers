@@ -3,19 +3,28 @@ from classes.loading_data import LoadData
 
 class PlotTrains():
     """
+    A class to plot train trajectories on a map of stations and connections.
 
     Parameters
     ----------
+    connections_file : str
+        The file path to the connections data.
+    stations_file : str
+        The file path to the stations data.
 
     Attributes
     ----------
+    data_loader : LoadData
+        An instance of the LoadData class to load connections and stations data.
+    connections : dict
+        Dictionary containing all possible connections between stations and their durations.
+    stations : dict
+        Dictionary containing station names and their coordinates.
 
     Methods
     -------
-
-    Parameters
-    ----------
-
+    plot_trajectories():
+        Plots the train trajectories on a map with stations and connections.
     """
     def __init__(self, connections_file, stations_file):
         self.data_loader = LoadData(connections_file, stations_file)
@@ -42,14 +51,8 @@ class PlotTrains():
                     x2, y2 = self.stations[station2]
                     ax.plot([x1, x2], [y1, y2], linestyle=':', color='black', alpha=0.5)
 
-            # # plot stations
-            # for station, (x, y) in self.stations.items():
-            #     ax.scatter(x, y, s=node_size, color='black', zorder=5)
-            #     ax.text(x, y + label_offset, station, fontsize=font_size, ha='center', va='bottom')
-
             station_labels = {}
             for i, (station, (x, y)) in enumerate(self.stations.items(), start=1):
-                # ax.scatter(x, y, s=node_size, color='black', zorder=5)
                 ax.text(x, y, str(i), fontsize=font_size, color='black', fontweight='bold', ha='center', va='bottom')
                 station_labels[station] = i
 
