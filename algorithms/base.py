@@ -7,24 +7,30 @@ class Base():
 
     Parameters
     ----------
-    max_trajectories : int
-        Maximum number of trajectories to generate.
+    all_trajectories : dict
+        Dictionary to store trajectories.
+    trajectory_count : int
+        Number of trajectories generated.
     all_connections : dict
         Dictionary containing all possible connections between stations and their durations.
-    max_time : int
-        Maximum time a trajectory is allowed to take.
 
     Attributes
     ----------
-    max_trajectories : int
-        Maximum number of trajectories to generate.
     all_trajectories : dict
         Dictionary to store trajectories.
     all_connections : dict
         Dictionary containing all possible connections between stations and their durations.
+    trajectory_count : int
+        Number of trajectories generated.
 
     Methods
     -------
+    calculate_score()
+        Calculates the final score based on unique connections, total trajectories, and total time.
+    calculate_intermediate_score()
+        Calculates an intermediate score without including the score in the dictionary.
+    to_csv(experiment_path)
+        Converts the trajectories and their scores to a CSV file.
 
     """
     def __init__(self, all_trajectories, trajectory_count, all_connections):
