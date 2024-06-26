@@ -21,18 +21,18 @@ class Random_NR(Random_R):
         Filters out the previous station from the list of possible connections if more than one connection is available.
     """
     def filter_connections(self, possible_connections, previous_station):
-        # Check if a previous station exists
+        # check if a previous station exists
         if previous_station:
-            # Only filter if there is more than one possible connection
+            # only filter if there is more than one possible connection
             if len(possible_connections) > 1:
-                # Create an empty list to store the filtered connections
+                # create an empty list to store the filtered connections
                 filtered_connections = []
-                # Iterate through each station in possible connections
+                # iterate through each station in possible connections
                 for station in possible_connections:
-                    # If the station is not the previous station, add it to the filtered list
+                    # if the station is not the previous station, add it to the filtered list
                     if station != previous_station:
                         filtered_connections.append(station)
-                # Update the possible connections with the filtered list
+                # update the possible connections with the filtered list
                 possible_connections = filtered_connections
 
         return possible_connections
