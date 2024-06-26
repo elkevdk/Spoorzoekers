@@ -47,8 +47,7 @@ def main():
         random_r_results.to_csv(f'output/{args.region}/output_r.csv')
 
         # return score distribution
-        ScoreDistribution(10000, Random_R, f'output/{args.region}score_distribution_r.png',
-            f'Score Distribution Random Return, {args.region}', args.max_trajectories, all_connections, args.max_time)
+        ScoreDistribution(10000, Random_R, f'output/{args.region}score_distribution_r.png', f'Score Distribution Random Return, {args.region}', args.max_trajectories, all_connections, args.max_time)
 
     elif args.algorithm == 'random_nr':
         random_nr = Random_NR(args.max_trajectories, all_connections, args.max_time)
@@ -58,8 +57,7 @@ def main():
         random_nr_results.to_csv(f'output/{args.region}/output_nr.csv')
 
         # return score distribution
-        ScoreDistribution(10000, Random_NR, f'output/{args.region}score_distribution_r.png',
-            f'Score Distribution Random Return, {args.region}', args.max_trajectories, all_connections, args.max_time)
+        ScoreDistribution(10000, Random_NR, f'output/{args.region}score_distribution_nr.png', f'Score Distribution Random No Return, {args.region}', args.max_trajectories, all_connections, args.max_time)
 
     elif args.algorithm == 'greedy':
         greedy = Greedy(args.max_trajectories, all_connections, args.max_time)
@@ -69,8 +67,7 @@ def main():
         greedy_results.to_csv(f'output/{args.region}/output_greedy.csv')
 
         # return score distribution
-        ScoreDistribution(10000, Greedy, f'output/{args.region}score_distribution_r.png',
-            f'Score Distribution Random Return, {args.region}', args.max_trajectories, all_connections, args.max_time)
+        ScoreDistribution(10000, Greedy, f'output/{args.region}score_distribution_greedy.png', f'Score Distribution Greedy, {args.region}', args.max_trajectories, all_connections, args.max_time)
 
     elif args.algorithm == 'hill_climber':
         hill_climber = HillClimber(args.max_trajectories, all_connections, args.max_time, 1000, 1)

@@ -71,14 +71,14 @@ class HillClimberScore():
                     hill_climber = HillClimber(self.trajectories, self.all_connections, self.time, iterations=runs, remove_count=count)
                     final_trajectories, final_score = hill_climber.run()
                     scores.append(final_score)
-                    
+
                     if i % 10 == 0 and i != 0:
                         print(f"Iteration {i}")
 
                 # plot and save the histogram
                 plt.figure(figsize=(10, 6))
                 plt.hist(scores, bins=20, edgecolor='black')
-                plt.title(f'Score Distribution Hill Climber, Holland. Runs: {runs} Trajectories Removed: {count}')
+                plt.title(f'Score Distribution Hill Climber, {self.region}. Runs: {runs} Trajectories Removed: {count}')
                 plt.xlabel('Score')
                 plt.ylabel('Frequency')
                 plt.savefig(f'output/{self.region}/score_distribution_hillclimber_{runs}_{count}.png')
