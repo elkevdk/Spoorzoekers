@@ -61,13 +61,6 @@ def main():
         ScoreDistribution(10000, Random_NR, f'output/{args.region}score_distribution_r.png',
             f'Score Distribution Random Return, {args.region}', args.max_trajectories, all_connections, args.max_time)
 
-    elif args.algorithm == 'score_optimizer':
-        score_optimizer = Score_Optimizer(args.max_trajectories, all_connections, args.max_time)
-        score_optimizer.add_trajectory()
-        score_optimizer_results = Base(score_optimizer.all_trajectories, score_optimizer.trajectory_count, all_connections)
-        score_optimizer_results.calculate_score()
-        score_optimizer_results.to_csv(f'output/{args.region}/output_so.csv')
-
     elif args.algorithm == 'greedy':
         greedy = Greedy(args.max_trajectories, all_connections, args.max_time)
         greedy.add_trajectory()
