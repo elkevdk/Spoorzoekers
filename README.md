@@ -38,7 +38,7 @@ To run the code and test the different algorithms, please open your terminal and
 
 '--remove_counts': (optional) determines the number of stations to remove from the trajectory for every step in the hill climber algorithm.
 
-'--max_trajectories': (optional) determines the maximum number of trajectories, default is 7. Please set them to 22 for region 'Nederland'.
+'--max_trajectories': (optional) determines the maximum number of trajectories, default is 7. Please set them to 20 for region 'Nederland'.
 
 '--max_time': (optional) maximum duration of a trajectory which is set to 120 by default.
 
