@@ -2,13 +2,14 @@ from algorithms.hillclimber import HillClimber
 import matplotlib.pyplot as plt
 
 class HillClimberScore():
-    def __init__(self, amount_runs, remove_counts, all_connections, iterations, trajectories, time):
+    def __init__(self, amount_runs, remove_counts, all_connections, iterations, trajectories, time, region):
         self.amount_runs = amount_runs
         self.remove_counts = remove_counts
         self.all_connections = all_connections
         self.iterations = iterations
         self.trajectories = trajectories
         self.time = time
+        self.region = region
 
     def run_distributions(self):
         scores = []
@@ -27,4 +28,4 @@ class HillClimberScore():
                 plt.title(f'Score Distribution Hill Climber, Holland. Runs: {runs} Trajectories Removed: {count}')
                 plt.xlabel('Score')
                 plt.ylabel('Frequency')
-                plt.savefig(f'output/Holland/score_distribution_hillclimber_{runs}_{count}.png')
+                plt.savefig(f'output/{self.region}/score_distribution_hillclimber_{runs}_{count}.png')
