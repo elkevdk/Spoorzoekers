@@ -40,7 +40,7 @@ class ScoreDistribution():
         Plots the score distribution as a histogram and saves it to a file.
     """
     def __init__(self, iterations, algorithm_class, connections, file_name, title, max_trajectories, all_connections, max_time):
-        self.iterations = iterations
+        self.iterations = iterationsg
         self.algorithm_class = algorithm_class
         self.connections = connections
         self.file_name = file_name

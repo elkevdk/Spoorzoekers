@@ -38,6 +38,7 @@ def main():
     all_connections = data.connections
     all_stations = data.stations
 
+    # executr specified algorithm and save results
     if args.algorithm == 'random_r':
         random_r = Random_R(args.max_trajectories, all_connections, args.max_time)
         random_r.add_trajectory()
@@ -67,11 +68,13 @@ def main():
         greedy_results.to_csv(f'output/{args.region}/output_greedy.csv')
 
     elif args.algorithm == 'hill_climber':
+        # run hill climber algorithm with specified parameters
         hill_climber = HillClimber(args.max_trajectories, all_connections, args.max_time, 1000, 1)
         hill_climber.run()
         hillclimber_results = Base(hill_climber.all_trajectories, hill_climber.trajectory_count, all_connections)
         hillclimber_results.to_csv(f'output/{args.region}/output_hillclimber_1_1000.csv')
 
+        # run hill climber score distribution
         score = HillClimberScore([args.runs], args.remove_counts, all_connections, 100, args.max_trajectories, args.max_time, args.region)
         score.run_distributions()
 
