@@ -1,6 +1,6 @@
 # RailNL
 
-In this README we give a little explanation about this case: RailNL.
+This README provides some background information about our implementation of the RailNL case.
 
 # Assignment
 Project Assignment: Optimizing Intercity Train Lining System
@@ -23,9 +23,28 @@ Task: Create a heuristic algorithm in Python that maximizes the objective functi
 This github contains four folders: algorithms, classes, data and output. Inside the 'data' folder, all csv files are stored.
 
 # Testing
-To run the code and test the different algorithms, please enter the following code in your terminal:
+To run the code and test the different algorithms, please open your terminal and take note of the following commands.
 
-python main.py
+'--algorithm' determines what algorithm should be run, with a choice of:
+
+- 'random_r': baseline algorithm, where a train is able to go back to the station that it came from
+- 'random_nr': applies a simple heuristic where a train is not able to return to the station it came from unless no other stations are available.
+- 'greedy': chooses the shortest connection available at every step where a next station must be selected.
+-'hill_climber': randomly removes certain stations from the trajectory and replaces them with different ones.
+
+'--region': determines which region to analyse, either 'Holland' or 'Nederland'
+
+'--runs': (optional) determines the number of runs for the hill climber. Default is set to 1.
+
+'--remove_counts': (optional) determines the number of stations to remove from the trajectory for every step in the hill climber algorithm. 
+
+'--max_trajectories': (optional) determines the maximum number of trajectories, default is 7. Please set them to 22 for region 'Nederland'.
+
+'--max_time': (optional) maximum duration of a trajectory which is set to 120 by default.
+
+Example command line:
+
+"python main.py --algorithm greedy --region Nederland --max_trajectories 20 --max_time 180"
 
 # Authors
 - Elke van der Kooij
