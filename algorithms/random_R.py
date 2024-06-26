@@ -21,11 +21,33 @@ class Random_R:
         Dictionary to store trajectories.
     all_connections : dict
         Dictionary containing all possible connections between stations and their durations.
+    max_time : int
+        Maximum time a trajectory is allowed to take.
+    trajectory_count : int
+        Number of trajectories generated so far.
 
     Methods
     -------
+    calculate_total_connections()
+        Calculates total number of connections in all_connections dictionary.
+    initialize_trajectory()
+        Initializes a trajectory by selecting a random start station.
+    select_random_station()
+        Selects a random station from all_connections.
+    calculate_p(total_connections)
+        Calculates the proportion of unique connections used in the trajectories.
+    select_next_station(possible_connections)
+        Selects the next station randomly from the list of possible connections.
+    update_trajectory(next_station, travel_time, current_station)
+        Updates the current trajectory with the next station and travel time.
+    filter_connections(possible_connections, previous_station)
+        Returns the possible connections without filtering out the previous station.
+    renumber_trajectories()
+        Renumber the trajectories to ensure the keys are numbered 1 through N sequentially.
     add_trajectory()
         Generates a trajectory within the allowed maximum time.
+    remove_trajectory()
+        Removes a randomly chosen trajectory from the set of trajectories.
     """
     def __init__(self, max_trajectories, all_connections, max_time):
         self.max_trajectories = max_trajectories
@@ -54,20 +76,12 @@ class Random_R:
     def calculate_p(self, total_connections):
         unique_connections = set()
         for key, trajectory in self.all_trajectories.items():
-            if isinstance(trajectory, list):  # Ensure the value is a list
+            if isinstance(trajectory, list):
                 for i in range(len(trajectory) - 1):
                     connection = frozenset((trajectory[i], trajectory[i + 1]))
                     unique_connections.add(connection)
         p = len(unique_connections) / (total_connections / 2)
         return p
-
-        # unique_connections = set()
-        # for trajectory in self.all_trajectories.values():
-        #     for i in range(len(trajectory) - 1):
-        #         connection = frozenset((trajectory[i], trajectory[i + 1]))
-        #         unique_connections.add(connection)
-        # p = len(unique_connections) / (total_connections / 2)
-        # return p
 
     def select_next_station(self, possible_connections):
         return random.choice(possible_connections)
