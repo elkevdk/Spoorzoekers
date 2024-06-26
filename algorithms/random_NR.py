@@ -7,6 +7,18 @@ class Random_NR(Random_R):
     Class that runs an experiment with a set of trajectories with filtering the previous station.
 
     Inherits from Random_NR and adds the filter_connections method to exclude the previous station from possible connections.
+
+    Parameters
+    ----------
+    possible_connections : list
+        List of possible next stations.
+    previous_station : str
+        The previous station in the trajectory.
+
+    Methods
+    -------
+    filter_connections(possible_connections, previous_station):
+        Filters out the previous station from the list of possible connections if more than one connection is available.
     """
     def filter_connections(self, possible_connections, previous_station):
         # Check if a previous station exists
@@ -22,5 +34,5 @@ class Random_NR(Random_R):
                         filtered_connections.append(station)
                 # Update the possible connections with the filtered list
                 possible_connections = filtered_connections
-                
+
         return possible_connections
