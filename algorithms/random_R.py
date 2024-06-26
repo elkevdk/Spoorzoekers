@@ -28,25 +28,25 @@ class Random_R():
 
     Methods
     -------
-    calculate_total_connections()
+    calculate_total_connections():
         Calculates total number of connections in all_connections dictionary.
-    initialize_trajectory()
+    initialize_trajectory():
         Initializes a trajectory by selecting a random start station.
-    select_random_station()
+    select_random_station():
         Selects a random station from all_connections.
-    calculate_p(total_connections)
+    calculate_p():
         Calculates the proportion of unique connections used in the trajectories.
-    select_next_station(possible_connections)
+    select_next_station():
         Selects the next station randomly from the list of possible connections.
-    update_trajectory(next_station, travel_time, current_station)
+    update_trajectory():
         Updates the current trajectory with the next station and travel time.
-    filter_connections(possible_connections, previous_station)
+    filter_connections():
         Returns the possible connections without filtering out the previous station.
-    renumber_trajectories()
+    renumber_trajectories():
         Renumber the trajectories to ensure the keys are numbered 1 through N sequentially.
-    add_trajectory()
+    add_trajectory():
         Generates a trajectory within the allowed maximum time.
-    remove_trajectory()
+    remove_trajectory():
         Removes a randomly chosen trajectory from the set of trajectories.
     """
     def __init__(self, max_trajectories, all_connections, max_time):
