@@ -14,8 +14,6 @@ class ScoreDistribution():
         Number of iterations to run the algorithm.
     algorithm_class : class
         The algorithm class to instantiate and run.
-    connections : dict
-        Dictionary containing all possible connections between stations and their durations.
     file_name : str
         The name of the file to save the plot.
     title : str
@@ -34,15 +32,14 @@ class ScoreDistribution():
 
     Methods
     -------
-    score_distribution()
+    score_distribution():
         Runs the algorithm for the specified number of iterations and stores the scores.
-    plot_score()
+    plot_score():
         Plots the score distribution as a histogram and saves it to a file.
     """
-    def __init__(self, iterations, algorithm_class, connections, file_name, title, max_trajectories, all_connections, max_time):
-        self.iterations = iterationsg
+    def __init__(self, iterations, algorithm_class, file_name, title, max_trajectories, all_connections, max_time):
+        self.iterations = iterations
         self.algorithm_class = algorithm_class
-        self.connections = connections
         self.file_name = file_name
         self.title = title
         self.max_trajectories = max_trajectories
@@ -61,8 +58,7 @@ class ScoreDistribution():
             algorithm = self.algorithm_class(self.max_trajectories, self.all_connections, self.max_time)
             # add trajectories
             algorithm.add_trajectory()
-            # calculate score for generated trajectories
-            results = Base(algorithm.all_trajectories, algorithm.trajectory_count, self.connections)
+            results = Base(algorithm.all_trajectories, algorithm.trajectory_count, self.all_connections)
             self.score_list.append(results.calculate_score())
 
         return self.score_list
