@@ -38,7 +38,7 @@ def main():
     all_connections = data.connections
     all_stations = data.stations
 
-    # executr specified algorithm and save results
+    # execute specified algorithm and save results
     if args.algorithm == 'random_r':
         random_r = Random_R(args.max_trajectories, all_connections, args.max_time)
         random_r.add_trajectory()
@@ -46,12 +46,20 @@ def main():
         random_r_results.calculate_score()
         random_r_results.to_csv(f'output/{args.region}/output_r.csv')
 
+        # return score distribution
+        ScoreDistribution(10000, Random_R, f'output/{args.region}score_distribution_r.png',
+            f'Score Distribution Random Return, {args.region}', args.max_trajectories, all_connections, args.max_time)
+
     elif args.algorithm == 'random_nr':
         random_nr = Random_NR(args.max_trajectories, all_connections, args.max_time)
         random_nr.add_trajectory()
         random_nr_results = Base(random_nr.all_trajectories, random_nr.trajectory_count, all_connections)
         random_nr_results.calculate_score()
         random_nr_results.to_csv(f'output/{args.region}/output_nr.csv')
+
+        # return score distribution
+        ScoreDistribution(10000, Random_NR, f'output/{args.region}score_distribution_r.png',
+            f'Score Distribution Random Return, {args.region}', args.max_trajectories, all_connections, args.max_time)
 
     elif args.algorithm == 'score_optimizer':
         score_optimizer = Score_Optimizer(args.max_trajectories, all_connections, args.max_time)
@@ -67,15 +75,18 @@ def main():
         greedy_results.calculate_score()
         greedy_results.to_csv(f'output/{args.region}/output_greedy.csv')
 
+        # return score distribution
+        ScoreDistribution(10000, Greedy, f'output/{args.region}score_distribution_r.png',
+            f'Score Distribution Random Return, {args.region}', args.max_trajectories, all_connections, args.max_time)
+
     elif args.algorithm == 'hill_climber':
-        # run hill climber algorithm with specified parameters
         hill_climber = HillClimber(args.max_trajectories, all_connections, args.max_time, 1000, 1)
         hill_climber.run()
         hillclimber_results = Base(hill_climber.all_trajectories, hill_climber.trajectory_count, all_connections)
         hillclimber_results.to_csv(f'output/{args.region}/output_hillclimber_1_1000.csv')
 
-        # run hill climber score distribution
-        score = HillClimberScore([args.runs], args.remove_counts, all_connections, 100, args.max_trajectories, args.max_time, args.region)
+        # return score distribution
+        score = HillClimberScore([args.runs], args.remove_counts, all_connections, 10000, args.max_trajectories, args.max_time, args.region)
         score.run_distributions()
 
 if __name__ == "__main__":
