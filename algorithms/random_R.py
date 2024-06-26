@@ -120,11 +120,17 @@ class Random_R:
 
             self.trajectory_count += 1
             self.all_trajectories[f"train_{self.trajectory_count}"] = self.connections
+
         self.renumber_trajectories()
+
         return self.all_trajectories
 
     def remove_trajectory(self):
-        trajectories_to_choose = [k for k in self.all_trajectories.keys() if k != "score"]
+        trajectories_to_choose = []
+        for key in self.all_trajectories.keys():
+            if key != "score":
+                trajectories_to_choose.append(key)
+
         if trajectories_to_choose:
             trajectory_to_remove = random.choice(trajectories_to_choose)
             del self.all_trajectories[trajectory_to_remove]

@@ -35,19 +35,19 @@ class Greedy(Random_R):
                 if conn not in self.used_connections:
                     possible_connections.append((conn, conn_time))
 
-            # Search for the nearest station in the filtered connections
+            # search for the nearest station in the filtered connections
             for connection, connection_time in possible_connections:
                 if connection_time < best_stop_time and connection_time + time_elapsed <= max_time:
                     best_stop_time = connection_time
                     best_stop_city = connection
 
             if best_stop_city:
-                # Update time and mark connection as used globally
+                # update time and mark connection as used globally
                 time_elapsed += best_stop_time
                 endtime = time_elapsed
                 self.used_connections.add(best_stop_city)
 
-                # Update all_connections to remove used connections bidirectionally
+                # update all_connections to remove used connections bidirectionally
                 del all_connections[city][best_stop_city]
                 del all_connections[best_stop_city][city]
 
@@ -63,7 +63,7 @@ class Greedy(Random_R):
                 endtime = time_elapsed
                 break
 
-        # Ensure the trajectory has at least two stations
+        # ensure the trajectory has at least two stations
         if len(traject) == 1:
             connections = self.all_connections[traject[0]]
             endcity = min(connections, key=connections.get)
