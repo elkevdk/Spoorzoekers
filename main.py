@@ -5,7 +5,6 @@ from classes.hillclimber_score import HillClimberScore
 from algorithms.base import Base
 from algorithms.random_R import Random_R
 from algorithms.random_NR import Random_NR
-from algorithms.best_score import Score_Optimizer
 from algorithms.greedy import Greedy
 from algorithms.hillclimber import HillClimber
 from output.visualize import TrainNetwork
@@ -16,7 +15,7 @@ def main():
 
     # construct command line arguments
     parser = argparse.ArgumentParser(description='Run train network optimization algorithms.')
-    parser.add_argument('--algorithm', choices=['random_r', 'random_nr', 'score_optimizer', 'greedy', 'hill_climber'], required=True, help='The algorithm to run.')
+    parser.add_argument('--algorithm', choices=['random_r', 'random_nr', 'greedy', 'hill_climber'], required=True, help='The algorithm to run.')
     parser.add_argument('--region', choices=['Holland', 'Nederland'], required=True, help='The region to run the algorithm on.')
     parser.add_argument('--runs', type=int, default=1, help='Number of runs for the hill climber and score distribution algorithms.')
     parser.add_argument('--remove_counts', type=int, nargs='+', default=[1, 2, 3, 4], help='Number of removals for the hill climber score distribution.')
