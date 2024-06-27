@@ -69,7 +69,7 @@ def main():
         ScoreDistribution(10000, Greedy, f'output/{args.region}score_distribution_greedy.png', f'Score Distribution Greedy, {args.region}', args.max_trajectories, all_connections, args.max_time)
 
     elif args.algorithm == 'hill_climber':
-        hill_climber = HillClimber(args.max_trajectories, all_connections, args.max_time, 100000, 1)
+        hill_climber = HillClimber(args.max_trajectories, all_connections, args.max_time, 50000, 4)
         hill_climber.run()
         hill_climber.plot_score_history(f'output/{args.region}/score_hillclimber.png')
         hillclimber_results = Base(hill_climber.all_trajectories, hill_climber.trajectory_count, all_connections)
