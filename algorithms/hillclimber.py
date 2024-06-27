@@ -96,17 +96,14 @@ class HillClimber(Random_R):
 
         return self.all_trajectories, self.current_score
 
-    def plot_score_history(score_history):
+    def plot_score_history(self, output_path):
         """
         Plot the score history over iterations.
-
-        Parameters
-        ----------
-        score_history : list of float
-            List containing the scores recorded at each iteration.
         """
-        plt.plot(range(len(score_history)), score_history)
+        plt.plot(range(len(self.score_history)), self.score_history)
         plt.xlabel('Iteration')
         plt.ylabel('Score')
         plt.title('Score Improvement Over Iterations')
+        plt.savefig(output_path)
         plt.show()
+        plt.close()
