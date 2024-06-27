@@ -1,4 +1,5 @@
 import copy
+import matplotlib.pyplot as plt
 from algorithms.base import Base
 from algorithms.random_R import Random_R
 
@@ -42,6 +43,7 @@ class HillClimber(Random_R):
         self.iterations = iterations
         self.remove_count = remove_count
         self.current_score = self.calculate_current_score()
+        self.score_history = []
 
     def calculate_current_score(self):
         """
@@ -87,7 +89,24 @@ class HillClimber(Random_R):
                 self.current_score = new_score
                 self.changes += 1
 
+            self.score_history.append(self.current_score)
+
         # assign final score to all_trajectories
         self.all_trajectories['score'] = self.current_score
 
         return self.all_trajectories, self.current_score
+
+    def plot_score_history(score_history):
+        """
+        Plot the score history over iterations.
+
+        Parameters
+        ----------
+        score_history : list of float
+            List containing the scores recorded at each iteration.
+        """
+        plt.plot(range(len(score_history)), score_history)
+        plt.xlabel('Iteration')
+        plt.ylabel('Score')
+        plt.title('Score Improvement Over Iterations')
+        plt.show()

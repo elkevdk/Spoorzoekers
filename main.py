@@ -72,12 +72,13 @@ def main():
     elif args.algorithm == 'hill_climber':
         hill_climber = HillClimber(args.max_trajectories, all_connections, args.max_time, 1000, 1)
         hill_climber.run()
+        hill_climber.plot_score_history()
         hillclimber_results = Base(hill_climber.all_trajectories, hill_climber.trajectory_count, all_connections)
         hillclimber_results.to_csv(f'output/{args.region}/output_hillclimber_1_1000.csv')
 
         # return score distribution
-        score = HillClimberScore([args.runs], args.remove_counts, all_connections, 10000, args.max_trajectories, args.max_time, args.region)
-        score.run_distributions()
+        # score = HillClimberScore([args.runs], args.remove_counts, all_connections, 10000, args.max_trajectories, args.max_time, args.region)
+        # score.run_distributions()
 
 if __name__ == "__main__":
     main()
